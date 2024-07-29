@@ -1,0 +1,6 @@
+@import url(common.css);
+
+.intro, .situation, .help {
+    cursor:pointer;
+}
+

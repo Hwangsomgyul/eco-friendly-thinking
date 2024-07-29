@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/mainPage.css"/>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=df5c8b8d6500a3ce6d4151f4e4900ceb&libraries=services"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="wrap">
+        <main id="container">
+            <header id="header"></header>
+            <div id="title">
+                <div style="display:flex;justify-content:center;margin-top:70px;font-size:25px;"><font style="font-weight:700;">지구용사 </font>님의 경험을 공유해주세요!</div>
+            </div>
+
+            <div id="mt-30">
+                <div class="title-2">
+                    <p>24-07-26</p>
+                    <p>김민지먼지 님의 종로구 무단투기 제보가 55개의 공감을 얻어 해당 구청에 민원 제기될 예정입니다!</p>
+                    <p>+50 point</p>
+                </div>
+            </div>
+
+            <div class="map_wrap">
+                <div id="map"></div>
+            
+                <div id="menu_wrap" class="bg_white">
+                    <div class="option">
+                        <div id="search-input">
+                            <form onsubmit="searchPlaces(); return false;">
+                                <input class="inp-txt" type="text" value="서울시" id="keyword" size="15"> 
+                                <button class="txt-btn" type="submit">검색하기</button>
+                                <p class="arrow_box">리뷰쓰고 20point!!</p>
+                            </form>
+                        </div>
+                    </div>
+                    <hr>
+                    <ul id="placesList"></ul>
+                    <div id="pagination"></div>
+                </div>
+            </div>
+            <div id="mt-100">
+                <div id="left-arrow"><</div>
+                <div id="image-container">
+                    <img class="image-slider" src="../assets/image/image1.jpg"/>
+                    <img class="image-slider" src="../assets//image/image2.jpg"/>
+                    <img class="image-slider" src="../assets/image/image3.jpg"/>
+                    <img class="image-slider" src="../assets//image/image4.jpg"/>
+                    <img class="image-slider" src="../assets/image/image5.jpg"/>
+                    <img class="image-slider" src="../assets//image/image6.jpg"/>
+                    <img class="image-slider" src="../assets/image/image7.jpg"/>
+                    <img class="image-slider" src="../assets//image/image8.jpg"/>
+                    <img class="image-slider" src="../assets//image/image9.jpg"/>
+                    <img class="image-slider" src="../assets/image/image1.jpg"/>
+                    <img class="image-slider" src="../assets//image/image2.jpg"/>
+                    <img class="image-slider" src="../assets/image/image3.jpg"/>
+                    <img class="image-slider" src="../assets//image/image4.jpg"/>
+                    <img class="image-slider" src="../assets/image/image5.jpg"/>
+                    <img class="image-slider" src="../assets//image/image6.jpg"/>
+                    <img class="image-slider" src="../assets/image/image7.jpg"/>
+                    <img class="image-slider" src="../assets//image/image8.jpg"/>
+                    <img class="image-slider" src="../assets//image/image9.jpg"/>
+                </div>
+                    <span id="right-arrow">></span>
+            </div>
+
+            <div id="mt-100">
+                <p class="seoul-p">서울시 내 무단투기 현장을 발견하지는 않으셨나요?</p>
+            </div>
+
+            <div id="report-container">
+                <div id="reports">
+                    <div id="report-success">
+                        <div id="padding-30">
+                            <div id="left-word">
+                                <h1>신고 완료</h1>
+                                <p>30개 이상의 공감을 얻어 민원신고가 완료되었어요! 작성자는 30 포인트를 받을 수 있습니다.</p>
+                            </div>
+                            <div id="img-container1">
+                                <img class="report-img" src="../assets/image/image1.jpg"/>
+                                <img class="report-img" src="../assets/image/image2.jpg"/>
+                                <img class="report-img" src="../assets/image/image3.jpg"/>
+                                <img class="report-img" src="../assets/image/image4.jpg"/>
+                                <img class="report-img" src="../assets/image/image5.jpg"/>
+                                <img class="report-img" src="../assets/image/image6.jpg"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="report-success">
+                        <div id="padding-30">
+                            <div id="left-word">
+                                <h1>최신 포럼</h1>
+                                <p>지역구의 무단투기 현장을 찾아 제보하고 20 포인트를 받으세요! 30명의 동의를 얻으면 추가 포인트까지!</p>
+                            </div>
+                            <div id="img-container2">
+                                <img class="report-img" src="../assets/image/image7.jpg"/>
+                                <img class="report-img" src="../assets/image/image8.jpg"/>
+                                <img class="report-img" src="../assets/image/image9.jpg"/>
+                                <img class="report-img" src="../assets/image/image4.jpg"/>
+                                <img class="report-img" src="../assets/image/image1.jpg"/>
+                                <img class="report-img" src="../assets/image/image5.jpg"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="button-container">
+                    <button id="more-btn">더보기</button>
+                </div>
+            </div>
+            <footer id="footer"></footer>
+        </main>
+    </div>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/kakaoMap.js"></script>
+    <script src="../assets/js/slider.js"></script>
+    <script src="../assets/js/mainPage.js"></script>
+    <script src="../assets/js/logout.js"></script>
+</body>
+</html>

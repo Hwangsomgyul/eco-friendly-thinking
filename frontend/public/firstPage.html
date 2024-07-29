@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/firstPage.css"/>
+    <link rel="icon" href="../assets/image/logo-icon.png" />
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script>
+        if (!Kakao.isInitialized()) {
+            Kakao.init('df5c8b8d6500a3ce6d4151f4e4900ceb');
+            console.log('Kakao SDK initialized:', Kakao.isInitialized());
+        }
+    </script>
+    <title>환경데이터</title>
+</head>
+<body>
+    <div id="wrap">
+        <header id="headers">
+            <div id="headers-menu">
+                <div class="logo">Lucky Vicky</div>
+                <div id="headers-gap">
+                    <span class="service">서비스 소개</span>
+                    <span class="quiz">OX 퀴즈</span>
+                </div>
+            </div>
+        </header>
+
+        <main id="containers">
+            <video class="bg-video__content" autoplay muted loop>
+                <source src="../assets/file/vid2.mp4"/>
+            </video>
+            <div class="pv-box">
+                <div class="fade-wrap">
+                    <div class="p-word1">그거 아시나요?</div>
+                </div>
+
+                <div class="fade-wrap" style="margin-top:500px;">
+                    <div class="p-word1">매년 플라스틱 폐기물이 증가하고 있어요.</div>
+                    <div class="year-graph">
+                        <div class="graph">
+                            <div class="bar" data-value="6026"></div>
+                            <div class="bar" data-value="6057"></div>
+                            <div class="bar" data-value="6411"></div>
+                            <div class="bar" data-value="6926"></div>
+                            <div class="bar" data-value="7168"></div>
+                            <div class="bar" data-value="7981"></div>
+                            <div class="bar" data-value="8244"></div>
+                            <div class="bar" data-value="10203"></div>
+                            <div class="bar" data-value="10816"></div>
+                            <div class="bar" data-value="11932"></div>
+                        </div>
+                        <div class="labels">
+                            <div style="color:white">2012</div>
+                            <div style="color:white">2013</div>
+                            <div style="color:white">2014</div>
+                            <div style="color:white">2015</div>
+                            <div style="color:white">2016</div>
+                            <div style="color:white">2017</div>
+                            <div style="color:white">2018</div>
+                            <div style="color:white">2019</div>
+                            <div style="color:white">2020</div>
+                            <div style="color:white">2021</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-wrap" style="margin-top:500px;">
+                    <div class="p-word1">우리나라는 전세계적으로</div>
+                </div>
+
+                <div class="fade-wrap" style="margin-top:500px;">
+                    <div class="p-word1">3위예요</div>
+                    <img src="../assets/image/number3remake.png"/>
+                </div>
+    
+                <div class="fade-wrap" style="margin-top:500px;">
+                    <div class="p-word1">코로나가 잠식하였음에도 지속적으로 증가하는 추세입니다</div>
+                    <div></div>
+                </div>
+    
+                <div class="fade-wrap" style="margin-top:500px;">
+                    <div class="p-word1">1회용기 등을 남용함에 따라</br>분리배출된 폐기물이</br> 모두 사용되지 않기 때문이지요</div>
+                </div>
+    
+                <div class="fade-wrap" style="margin-top:500px;">
+                    <div class="p-word1">쓰레기를 줄이기 위한 방법은 간단합니다</div>
+                </div>
+    
+                <div class="fade-wrap" style="margin-top:500px;">
+                    <div class="p-word1">그 방법에 대해 알아가봐요</div>
+                </div>
+
+                <div  style="margin-top:200px;margin-bottom:100px;">
+                    <button id="social-btn">소셜 로그인</button>
+                </div>
+            </div>
+        </main>
+
+        <footer id="footers">
+            <div style="display:flex;justify-content:center">
+                <div style="font-size:18px;font-weight:700;margin-right:100px;align-items:center;justify-content:center;color:white;">Lucky Vicky</div>
+                <div><img style="width:30px;background:white;" src="../assets/image/logo-icon.png"/></div> 
+            </div>
+            <div class="footers-info">
+                <span class="policy">서비스 약관/정책</span>
+                <span class="work-info">회사소개</span>
+            </div>
+            <div class="footers-last">copyrightⓒ2024 All rights reserved by Lucky Vicky</div>
+        </footer>
+    </div>
+</body>
+    <script src="../assets/js/firstPage.js"></script>
+    <script src="../assets/js/graph.js"></script>
+    <script src="../assets/js/login.js"></script>
+</html>

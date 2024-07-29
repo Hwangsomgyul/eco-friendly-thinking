@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/pagination.css"/>
+    <link rel="stylesheet" href="../assets/css/pagination.css"/>
+    <link rel="icon" href="../assets/image/logo-icon.png"/>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=df5c8b8d6500a3ce6d4151f4e4900ceb&libraries=services"></script>
+    <script></script>
+    <title>페이지네이션</title>
+</head>
+<body>
+    <div id="wrap">
+        <div id="container">
+            <header id="header"></header>
+            <div id="mt-100">
+                <div>
+                    <p class="p-1">
+                        <span class="bold-text">스타벅스 럭키비키점</span><br>
+                        <span class="light-text">서울시 중구 퇴계로</span>
+                    </p>
+                    <p class="p-2">리뷰쓰기</p>
+                </div>
+                    <div id="search-input">
+                        <form onsubmit="searchPlaces(); return false;">
+                            <input class="inp-txt" type="text" value="검색어를 입력하세요" id="keyword" size="15"> 
+                            <button class="txt-btn" type="submit">검색하기</button>
+                        </form>
+                    </div>
+            </div>
+
+            <div id="mt-30">
+                <div class="pg-img-container">
+                    <div>
+                        <img class="pg-img" src="../assets/image/image1.jpg"/>
+                        <p>엘리스</p>
+                        <div>2.0/5.0</div>
+                        <div>2024-07-28</div>
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/pagination.js"></script>
+    <script src="../assets/js/logout.js"></script>
+    <script src="../assets/js/kakaoMap.js"></script>
+</body>
+</html>

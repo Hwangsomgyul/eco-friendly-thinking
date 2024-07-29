@@ -1,0 +1,92 @@
+@import url(common.css);
+
+#container {
+    width:1300px;
+    min-width:1920px;
+    margin:0 auto;
+}
+
+#mt-100 {
+    margin-top:100px;
+    display:flex;
+    justify-content: center;
+    gap:20px;
+    position:relative;
+    width:1300px;
+}
+
+.p-1 {
+    width: 300px;
+    height: 80px;
+    background: var(--main-primary-color3);
+    border-radius: 8px;
+    color: white;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* 텍스트 중앙 정렬 */
+    padding: 10px;
+    margin:0 auto;
+}
+
+.p-2 {
+    width:300px;
+    
+}
+
+.bold-text {
+    font-weight: bold;
+    font-size: 25px;
+    color: white;
+}
+
+.light-text {
+    font-weight: normal;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#search-input {
+    position:absolute;
+    right:0; /* 우측으로 붙임 */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+}
+
+.inp-txt {
+    width: 250px;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid var(--main-primary-color3);
+    padding: 0 0 0 20px;
+}
+
+.txt-btn {
+    width: 50px;
+    height: 40px;
+    margin-left: 10px; /* 버튼과 입력칸 사이 간격 추가 */
+}
+
+#mt-30 {
+    margin-top:30px;
+    width:1300px;
+    margin:30px auto;
+}
+
+.pg-img-container {
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    justify-content: space-between;
+}
+
+.pg-img {
+    width: 250px; /* 4개의 이미지가 한 줄에 들어가도록 계산 */
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom:30px;
+}

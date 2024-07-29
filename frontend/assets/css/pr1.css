@@ -1,0 +1,17 @@
+.slideshow-container {
+    max-width: 500px;
+    position: relative;
+    margin: auto;
+    overflow: hidden;
+}
+
+.slides {
+    width: 500px;
+    display: inline-block;
+    position: absolute;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slides img {
+    width: 500px;
+}

@@ -1,0 +1,116 @@
+@import url(common.css);
+@import url(kakaoMap.css);
+
+#container {
+    width: 1300px;
+    margin: 0 auto;
+    min-width: 1920px;
+}
+
+#mt-30 {
+    margin-top: 30px;
+}
+
+.title-2 {
+    width: 1300px;
+    border: 2px solid var(--main-primary-color);
+    border-radius: 5px;
+    height: 60px;
+    margin: 0 auto;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+#mt-100 {
+    width: 100%;
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    position: relative;
+}
+
+#left-arrow, #right-arrow {
+   cursor: pointer;
+   font-size: 2rem;
+   padding: 0 10px;
+   user-select: none;
+}
+
+#image-container {
+    display: flex;
+    overflow: hidden;
+    width: 60%;
+}
+
+.image-slider {
+    min-width: 150px;
+    height: 150px;
+    margin-right: 10px;
+    transition: transform 0.5s ease;
+}
+
+.seoul-p {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+#report-container {
+    width: 1300px;
+    margin: 0 auto;
+    background: var(--main-primary-color);
+    border-radius: 8px;
+    padding-bottom:30px;
+}
+
+#reports {
+    display: flex;
+    justify-content: space-between;
+    padding:20px;
+}
+
+#report-success {
+    width: 48%;
+    
+    border-radius: 8px;
+    padding: 20px;
+}
+
+#padding-30 {
+    padding: 30px 0 0 30px;
+}
+
+#left-word {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.report-img {
+    width: 180px;
+    height: 180px;
+}
+
+#button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+#more-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    background: var(--main-primary-color3);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
