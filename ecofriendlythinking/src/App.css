@@ -1,0 +1,157 @@
+/* 공통 스타일 */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  /* 헤더 스타일 */
+  header {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 0;
+  }
+  
+  header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 20px;
+  }
+  
+  header nav {
+    display: inline-block;
+    margin-left: 50px;
+  }
+  
+  header nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  header .user-menu {
+    float: right;
+    margin-right: 20px;
+  }
+  
+  header .user-menu a {
+    color: white;
+    text-decoration: none;
+    margin-left: 10px;
+  }
+  
+  /* 버튼 스타일 */
+  button, .btn {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover, .btn:hover {
+    background-color: #45a049;
+  }
+  
+  button:disabled, .btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* 입력 필드 스타일 */
+  input[type="text"], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+  }
+  
+  label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+  }
+  
+  /* 포럼 글 스타일 */
+  .forum-post {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px 0;
+  }
+  
+  .forum-post h3 {
+    margin-top: 0;
+  }
+  
+  .forum-post p {
+    margin-bottom: 10px;
+  }
+  
+  /* 이미지 업로드 스타일 */
+  .image-upload {
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .image-upload:hover {
+    border-color: #4caf50;
+  }
+  
+  .image-upload input[type="file"] {
+    display: none;
+  }
+  
+  /* 맵 스타일 */
+  .map-container {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  
+  /* 기타 스타일 */
+  .points {
+    color: #4caf50;
+    font-weight: bold;
+  }
+  
+  .points span {
+    font-size: 0.9em;
+    color: #999;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f1f1f1;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 20px;
+  }
+  
