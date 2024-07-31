@@ -1,0 +1,9 @@
+@import url(../header.css);
+
+#container {
+    width:1400px;
+    height:1780px;
+    background:red;
+    margin:0 auto;
+    margin-top:160px;
+}
