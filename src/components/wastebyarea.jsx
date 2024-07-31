@@ -28,6 +28,18 @@ ChartJS.register(
 
 // <----- 정적 데이터 ----->
 // 라벨
+const react_dummy = [
+  10, 10, 10, 10, 20, 20, 20, 20, 30, 30, 30, 30, 10, 10, 10, 20, 20, 20, 20,
+  30, 30, 30, 30,
+];
+const vue_dummy = [
+  10, 30, 10, 10, 10, 10, 30, 10, 10, 20, 30, 30, 20, 20, 20, 30, 20, 30, 30,
+  20, 20, 20, 30,
+];
+const total_dummy = [
+  10, 1, 5, 9, 10, 10, 10, 5, 9, 8, 7, 20, 20, 9, 10, 10, 10, 4, 9, 6, 20, 20,
+  20, 4,
+];
 const years = new Array(23).fill(0).map((_, idx) => idx + 2000 + "년");
 
 // 지역구에 따라 변경되는 데이터들
@@ -89,19 +101,23 @@ const options = {
     position: "right",
     beginAtZero: true,
     grid: {
-      drawOnChartArea: false, // 메인 y축의 그리드와 겹치지 않도록 설정
+      drawOnChartArea: false,
+      // 메인 y축의 그리드와 겹치지 않도록 설정
+    },
+    ticks: {
+      suggestedMin: 0,
     },
   },
 };
 
 // 데이터 가공 함수
-export const handleData = () => {
-  // 전달받은 props로 data 구성 후 리턴 data로 전달
-  return data;
-};
+// export const handleData = () => {
+//   // 전달받은 props로 data 구성 후 리턴 data로 전달
+//   return data;
+// };
 
 // 차트 그리기
-const drawChart = () => {
+export const DrawChart = () => {
   // 지역구 list 선택을 구독하는 useEffect
   // if (이전에 선택했던 지역구인지?) -> False : api 요청
   // 요청받은 데이터 처리 함수 (따로 빼기)
@@ -109,7 +125,7 @@ const drawChart = () => {
   // handleData return값을 차트로 전달해서 그리기
   return (
     <div style={{ width: "800px" }}>
-      <Chart data={mixData} options={options} />
+      <Chart data={seoulData} options={options} />
     </div>
   );
 };
