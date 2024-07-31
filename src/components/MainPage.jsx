@@ -1,5 +1,7 @@
 // MainPage.jsx
 import React, { useEffect } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -13,11 +15,12 @@ import image7 from '../images/image7.jpg';
 import image8 from '../images/image8.jpg';
 import image9 from '../images/image9.jpg';
 
-import leftArrow from '../images/left-arrow.png';
-import rightArrow from '../images/right-arrow.png';
+import leftArrow from '../images/left-arrow.svg';
+import rightArrow from '../images/right-arrow.svg';
 // import KakaoMap from './KakaoMap';
 
 const MainPage = () => {
+  // const navigate = useNavigate();
 
     useEffect(() => {
         const loadKakaoMap = () => {
@@ -59,6 +62,10 @@ const MainPage = () => {
       
         loadKakaoMap();
       }, []);
+
+      // const handleClick = () => {
+      //   navigate('/Pagination');
+      // };
       
 
   return (
@@ -98,64 +105,55 @@ const MainPage = () => {
             <div id="pagination"></div>
         </div>
 
-        <div className='mt-[40px] w-full h-[150px] bg-red-500'>
-            <div className='flex'>
-                <div className='flex gap-[10px] mx-auto'>
-                    <img src={leftArrow} alt="Left-Arrow" className="w-30 h-30 cursor-pointer" />
-                    <img src={image1} alt="Image 1" className="w-[150px] h-[150px]" />
-                    <img src={image2} alt="Image 2" className="w-[150px] h-[150px]" />
-                    <img src={image3} alt="Image 3" className="w-[150px] h-[150px]" />
-                    <img src={image4} alt="Image 4" className="w-[150px] h-[150px]" />
-                    <img src={image5} alt="Image 5" className="w-[150px] h-[150px]" />
-                    <img src={image6} alt="Image 6" className="w-[150px] h-[150px]" />
-                    <img src={image7} alt="Image 7" className="w-[150px] h-[150px]" />
-                    <img src={image8} alt="Image 8" className="w-[150px] h-[150px]" />
-                    <img src={image9} alt="Image 9" className="w-[150px] h-[150px]" />    
-                    <img src={rightArrow} alt="Right-Arrow" className='w-30 h-30 cursor-pointer' />
-                </div>
+        <div className="w-full mx-auto bg-[#D6EFD8] mt-[40px] rounded-[4px] pb-[30px] relative" id="report-container">
+      <div className="flex justify-between" id="reports">
+        <div className="p-[30px]" id="report-success">
+          <div className="w-[600px] h-[600px]" id="padding-30">
+            <div id="left-word">
+              <h1 className="text-[25px] font-bold">신고 완료</h1>
+              <p className="text-[15px] mb-[30px]">
+                30개 이상의 공감을 얻어 민원신고가 완료되었어요!<br />
+                작성자는 30 포인트를 받을 수 있습니다.
+              </p>
             </div>
+            <div className="flex flex-wrap gap-[10px]" id="img-container1">
+              <img src={image1} alt="Image 1" className="w-[180px] h-[180px] object-cover" />
+              <img src={image2} alt="Image 2" className="w-[180px] h-[180px] object-cover" />
+              <img src={image3} alt="Image 3" className="w-[180px] h-[180px] object-cover" />
+              <img src={image4} alt="Image 4" className="w-[180px] h-[180px] object-cover" />
+              <img src={image5} alt="Image 5" className="w-[180px] h-[180px] object-cover" />
+              <img src={image6} alt="Image 6" className="w-[180px] h-[180px] object-cover" />
+            </div>
+          </div>
         </div>
 
-        <div id="report-container">
-                <div id="reports">
-                    <div id="report-success">
-                        <div id="padding-30">
-                            <div id="left-word">
-                                <h1>신고 완료</h1>
-                                <p>30개 이상의 공감을 얻어 민원신고가 완료되었어요! 작성자는 30 포인트를 받을 수 있습니다.</p>
-                            </div>
-                            <div id="img-container1">
-                                <img class="report-img" src="../assets/image/image1.jpg"/>
-                                <img class="report-img" src="../assets/image/image2.jpg"/>
-                                <img class="report-img" src="../assets/image/image3.jpg"/>
-                                <img class="report-img" src="../assets/image/image4.jpg"/>
-                                <img class="report-img" src="../assets/image/image5.jpg"/>
-                                <img class="report-img" src="../assets/image/image6.jpg"/>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="report-success">
-                        <div id="padding-30">
-                            <div id="left-word">
-                                <h1>최신 포럼</h1>
-                                <p>지역구의 무단투기 현장을 찾아 제보하고 20 포인트를 받으세요! 30명의 동의를 얻으면 추가 포인트까지!</p>
-                            </div>
-                            <div id="img-container2">
-                                <img class="report-img" src="../assets/image/image7.jpg"/>
-                                <img class="report-img" src="../assets/image/image8.jpg"/>
-                                <img class="report-img" src="../assets/image/image9.jpg"/>
-                                <img class="report-img" src="../assets/image/image4.jpg"/>
-                                <img class="report-img" src="../assets/image/image1.jpg"/>
-                                <img class="report-img" src="../assets/image/image5.jpg"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="button-container">
-                    <button id="more-btn">더보기</button>
-                </div>
+        <div className="p-[30px]" id="report-latest">
+          <div className="w-[600px] h-[600px]" id="padding-30">
+            <div id="left-word">
+              <h1 className="text-[25px] font-bold">최신 포럼</h1>
+              <p className="text-[15px] mb-[30px]">
+                지역구의 무단투기 현장을 찾아 제보하고 20 포인트를 받으세요! 30명의 동의를 얻으면 추가 포인트까지!
+              </p>
             </div>
+            <div className="flex flex-wrap gap-[10px]" id="img-container2">
+              <img src={image7} alt="Image 7" className="w-[180px] h-[180px] object-cover" />
+              <img src={image8} alt="Image 8" className="w-[180px] h-[180px] object-cover" />
+              <img src={image9} alt="Image 9" className="w-[180px] h-[180px] object-cover" />
+              <img src={image4} alt="Image 4" className="w-[180px] h-[180px] object-cover" />
+              <img src={image1} alt="Image 1" className="w-[180px] h-[180px] object-cover" />
+              <img src={image5} alt="Image 5" className="w-[180px] h-[180px] object-cover" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex justify-center items-center mt-[25px] pb-[25px]">
+        {/* <Link to='/MyPage'><button className="px-[20px] py-[10px] bg-[#365a31] text-white font-bold rounded">
+          더보기
+        </button></Link> */}
+      </div>
+    </div>
+
       </div>
       <Footer />
     </div>
