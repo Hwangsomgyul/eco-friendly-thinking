@@ -1,55 +1,20 @@
 /** @type {import('tailwindcss').Config} */
+
+import { changePx } from "./src/utils/changePx";
+
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
-      height: {
-        '180': '180px',
-        '514': '514px',
-        '400': '400px',
-        '350': '350px',
-        '270': '270px',
-        '130': '130px',
-        '150': '150px',
-        '120': '120px',
-        '110': '110px',
-        '95' : '95px',
-        '80' : '80px',
-        '60' : '60px',
-        '50' : '50px',
-        '40' : '40px',
-        '30' : '30px',
-        '25' : '25px',
-        '15' : '15px',
-        '13' : '13px',
-        '10' : '10px',
-        '5'  : '5px',
-        '600': '600px',
-        '900': '900px',
-        '980': '980px',
-        '640': '640px',
-        '1400': '1400px',
-        '1780': '1780px',
-        '160': '160px',
-        '430': '430px',
-        '225': '225px',
-        '220': '220px',
-        '280': '280px',
-        '1040': '1040px',
-        '840': '840px',
-      },
-      fontFamily: {
-        sans: ['Poppins', 'sans-serif'],
-      },
+      height: changePx,
+      padding: changePx,
+      width: changePx,
+      gap: changePx,
       colors: {
-        'regal-green': '#365a31',
-        'white-green': '#D6EFD8',
-        'hover-green': '#508D4E',
-      }
+        blackGreen: "#2B422A",
+        lightGreen: "#D6EFD8",
+      },
     },
   },
   plugins: [],
-}
-
+};
