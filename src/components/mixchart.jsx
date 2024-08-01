@@ -82,6 +82,9 @@ const options = {
   scales: {
     x: {
       stacked: true,
+      grid: {
+        display: false, // x축 그리드 숨기기
+      },
     },
     y: {
       stacked: true,
