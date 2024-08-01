@@ -1,11 +1,27 @@
 import React, {useState, useEffect} from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import TrueClick from '../images/TrueClick.jpg'
+import boxOk from '../images/boxOk.svg';
+import boxNotOk from '../images/boxNotOk.svg';
 
 
 
 const Forum = () => {
+
+  const [hover, setHover] = useState(false);
+  const [clicked, setClicked] = useState(false);
+
+  const handleMouseEnter = () => {
+    setHover(true);
+  }
+
+  const handleMouseLeave = () => {
+    setHover(false);
+  }
+
+  const handleClick = () => {
+    setClicked(prev => !prev);
+  }
 
     // const [DropdownView, setDropdownView] = useState(false);
 
@@ -75,7 +91,18 @@ const Forum = () => {
                         </div>
                         <div className='flex mt-[20px] justify-between'>
                             <p>동일한 내용의 게시글이 이미 존재하나요?</p>
-                            <img src={TrueClick} alt="click image" className="w-[30px] h-[30px] object-cover flex justify-end cursor-pointer"/>
+                              <div className='relative flex item-center'>
+                                <img src={clicked ? boxOk : boxNotOk} alt="box image" 
+                                className="w-[30px] h-[30px] object-cover cursor-pointer"
+                                onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
+                                onClick={handleClick} />
+                              <p className={`absolute left-full ml-4 transition-opacity 
+                                duration-300 ${hover ? 'opacity-100' : 'opacity-0'}`}
+                                style={{ zIndex: 10 }}>
+                                + 10 point!
+                              </p>
+                            </div>
+                            
                         </div>
                         <div className='mt-[15px] flex gap-[10px]'>
                             <div className='bg-[#D6EFD8] w-[230px] h-[280px] flex justify-center items-center text-[20px]'>image upload</div>
@@ -92,6 +119,7 @@ const Forum = () => {
                         </div>
                     </div>
                 </div>
+                <div>모달창</div>
             </div>
             <Footer />
         </div>
