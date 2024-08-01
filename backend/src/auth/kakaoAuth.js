@@ -1,6 +1,6 @@
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
-const { User } = require('../models/User');
+const User = require('../models/User');
 const jwksClient = require('jwks-rsa');
 
 const {
@@ -36,36 +36,37 @@ async function verifyIdToken(idToken) {
 
 const kakaoAuth = {
   login: async (req, res) => {
-    const { code } = req.body;
+    const { code } = req.query;
     try {
       // 카카오 액세스 토큰과 ID 토큰 얻기
-      const tokenResponse = await axios.post('https://kauth.kakao.com/oauth/token', null, {
+      const tokenResponse = await axios.post('https://kauth.kakao.com/oauth/token', 
+        {
+        grant_type: 'authorization_code',
+        client_id: KAKAO_CLIENT_ID,
+        redirect_uri: KAKAO_REDIRECT_URI,
+        code // 이 부분에서 사용자로부터 받은 인증 코드를 사용
+      }, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
         },
-        params: {
-          grant_type: 'authorization_code',
-          client_id: KAKAO_CLIENT_ID,
-          redirect_uri: KAKAO_REDIRECT_URI,
-          code // 이 부분에서 사용자로부터 받은 인증 코드를 사용
-        },
+        
       });
 
       const { access_token, id_token, refresh_token } = tokenResponse.data;
+      console.log(access_token, id_token, refresh_token);
 
       // ID 토큰 검증
       const decodedIdToken = await verifyIdToken(id_token);
+      console.log(decodedIdToken);
 
       // 검증된 ID 토큰에서 사용자 정보 추출
       const { sub: kakaoId, email, nickname } = decodedIdToken;
 
-      // 사용자 찾기
-      if (!User) {
-        console.error('User 모델을 불러오는 데 실패했습니다.');
-        return res.status(500).json({ error: '서버 오류가 발생했습니다.' });
-      }
+      
+      
 
       const user = await User.findOne({ where: { 'social_login_info.sub': kakaoId } });
+      console.log(user);
 
       if (user) {
         // 사용자 존재 시
@@ -98,7 +99,7 @@ const kakaoAuth = {
 
       return res.json({ token, user: newUser });
     } catch (error) {
-      console.error('Kakao login error:', error.message);
+      console.error('Kakao login error:', error);
       res.status(500).json({ error: '로그인 중 오류가 발생했습니다.' });
     }
   },

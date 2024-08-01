@@ -16,7 +16,7 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-app.use('/api', routes);
+app.use('/', routes);
 
 // 기본 라우트 추가
 app.get('/', (req, res) => {
