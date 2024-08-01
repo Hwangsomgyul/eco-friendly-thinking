@@ -1,11 +1,13 @@
+import { Link } from 'react-router-dom'
+
 import React from 'react';
-import logo from './logo.png';
+import './Header.css';
 
 const Header = () => {
   return (
     <header className="flex justify-between items-center bg-[#365a31] px-6 py-3 text-white w-full">
       <div className="flex items-center space-x-2">
-        <img src={logo} alt="Logo" className="w-8 h-8" />
+        <img src="/logo.png" alt="Logo" className="w-8 h-8" />
         <span className="text-lg font-bold">eco-friendly thinking</span>
       </div>
       <div className="flex items-center space-x-8">
@@ -21,12 +23,12 @@ const Header = () => {
           </div>
         </div>
         <span className="cursor-pointer">리뷰</span>
-        <span className="cursor-pointer border border-white rounded-md px-3 py-1 bg-white text-[#365a31]">
+        <Link to="/Forum"><span className="cursor-pointer border border-white rounded-md px-3 py-1 bg-white text-[#365a31]">
           포럼
-        </span>
+        </span></Link>
         <div className="flex space-x-4">
-          <span className="cursor-pointer">마이페이지</span>
-          <span className="cursor-pointer">로그아웃</span>
+          <Link to="/mypage"><span className="cursor-pointer">마이페이지</span></Link>
+          <a href="/mypage"><span className="cursor-pointer">로그아웃</span></a>
         </div>
       </div>
     </header>
