@@ -1,24 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-import image1 from '../images/image1.jpg';
-import image2 from '../images/image2.jpg';
-import image3 from '../images/image3.jpg';
-import image4 from '../images/image4.jpg';
-import image5 from '../images/image5.jpg';
-import image6 from '../images/image6.jpg';
-
-const Modal = () => {
-
-    // const handleClose = (event) => {
-    //     if(event.target === event.currentTarget) {
-    //         onClose();
-    //     }
-    // };
-
-    // if(!open) {
-    //     return null;
-    // }
-
+const reviewModal = () => {
     return (
         <div className='dimmed'>
             <section className='flex-col h-[640px] w-[350px] border-2 justify-center'>
@@ -74,4 +56,4 @@ const Modal = () => {
     )
 }
 
-export default Modal;
+export default reviewModal;

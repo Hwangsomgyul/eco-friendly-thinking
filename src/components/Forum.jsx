@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Modal from '../components/Modal';
+
 import boxOk from '../images/boxOk.svg';
 import boxNotOk from '../images/boxNotOk.svg';
 
@@ -119,7 +121,7 @@ const Forum = () => {
                         </div>
                     </div>
                 </div>
-                <div>모달창</div>
+                <div onClick={Modal}>모달창</div>
             </div>
             <Footer />
         </div>
