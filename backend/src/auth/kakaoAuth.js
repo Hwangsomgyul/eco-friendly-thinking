@@ -40,12 +40,14 @@ const kakaoAuth = {
     try {
       // 카카오 액세스 토큰과 ID 토큰 얻기
       const tokenResponse = await axios.post('https://kauth.kakao.com/oauth/token', null, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+        },
         params: {
           grant_type: 'authorization_code',
           client_id: KAKAO_CLIENT_ID,
           redirect_uri: KAKAO_REDIRECT_URI,
-          code,
-          scope: 'openid'
+          code // 이 부분에서 사용자로부터 받은 인증 코드를 사용
         },
       });
 

@@ -24,10 +24,6 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: true
   },
-  membership_id: {
-    type: DataTypes.TINYINT,
-    allowNull: false
-  }
 }, {
   timestamps: true,
   paranoid: true,

@@ -9,11 +9,11 @@ const KakaoCallback = () => {
   useEffect(() => {
     const code = new URL(window.location.href).searchParams.get('code');
     if (code) {
-      axios.post(`${process.env.REACT_APP_API_URL}/auth/kakao`, { code }, { withCredentials: true })
+      axios.post(`${process.env.REACT_APP_API_URL}/auth/kakao`, { code })
         .then(response => {
           const { token, user } = response.data;
-          document.cookie = `token=${token}; path=/; max-age=${60 * 60}`; // 1시간 유효
-          document.cookie = `user=${JSON.stringify(user)}; path=/; max-age=${60 * 60}`; // 1시간 유효
+          localStorage.setItem('token', token);
+          localStorage.setItem('user', JSON.stringify(user));
           navigate('/dashboard');
         })
         .catch(error => {
