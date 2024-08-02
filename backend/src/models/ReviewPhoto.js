@@ -14,6 +14,14 @@ const ReviewPhoto = sequelize.define('ReviewPhoto', {
   photo_url: {
     type: DataTypes.STRING,
     allowNull: false
+  },
+  review_id: {  // review_id field added
+    type: DataTypes.BIGINT,
+    allowNull: false,
+    references: {
+      model: 'reviews',  // Referencing the Review model
+      key: 'id'
+    }
   }
 }, {
   timestamps: true,
