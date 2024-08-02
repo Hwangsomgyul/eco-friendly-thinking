@@ -1,0 +1,101 @@
+* {
+    padding:0;
+    margin:0;
+}
+
+html, body {
+    width:100%;
+    height:100%;
+}
+
+#header {
+    width:100%;
+    height:180px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #365a31;
+    padding: 10px 20px 0px 15px;
+    color: white;
+  }
+
+img {
+    width:150px;
+    height:150px;
+}
+
+#menu-item {
+    width:100%;
+    height:100%;
+}
+
+#menu {
+    display:flex;
+    font-size:20px;
+    font-weight:700;
+    align-items:flex-start;
+    margin-top:130px;
+}
+
+#page-logout {
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    align-items: center;
+    gap: 30px;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.home {
+    background:white;
+    border-top-left-radius:10px;
+    border-top-right-radius:10px;
+    width:120px;
+    height:50px;
+    align-items: center;
+    color:black;
+    display:flex;
+    justify-content: center;
+}
+
+.introduce {
+    width:120px;
+    height:50px;
+    align-items: center;
+    display:flex;
+    justify-content: center;
+}
+
+.review {
+    width:120px;
+    align-items: center;
+    display:flex;
+    justify-content: center;
+}
+
+.forum {
+    width:120px;
+    align-items: center;
+    display:flex;
+    justify-content: center;
+}
+
+.shop {
+    width:120px;
+    align-items: center;
+    display:flex;
+    justify-content: center;
+}
+
+.home, .introduce, .review, .forum, .shop {
+    cursor:pointer;
+}
+
+.home:hover, .introduce:hover, .review:hover, .forum:hover, .shop:hover {
+    background:ghostwhite;
+}
+
+.my-page, .cut, .logout {
+    font-size:20px;
+}
