@@ -22,6 +22,10 @@ const Review = sequelize.define('Review', {
   photo_url: {
     type: DataTypes.STRING,
     allowNull: true
+  },
+  business_name: {
+    type: DataTypes.STRING,
+    allowNull: false
   }
 }, {
   timestamps: true,
