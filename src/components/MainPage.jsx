@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './mainPage.css';
+import {Link} from 'react-router-dom';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Pagination from './Pagination';
 
 import image1 from '../images/image1.jpg';
 import image2 from '../images/image2.jpg';
@@ -73,10 +75,11 @@ const MainPage = () => {
     console.log('Search term:', searchTerm);
   };
 
+  
   return (
     <div>
       <Header />
-      <div className='w-[1400px] h-[1780px] mx-auto mt-[160px] justify-center'>
+      <div className='w-[1400px] h-[1900px] mx-auto mt-[100px] justify-center'>
         <div title>
             <div className='flex font-bold text-[25px] text-[#365a31] items-center justify-center'>지구용사
                 <p className='font-normal text-black'>님의 경험을 공유해주세요!</p>
@@ -119,14 +122,32 @@ const MainPage = () => {
             <ul id="placesList"></ul>
             <div id="pagination"></div>
         </div>
+        {/* <div className='w-full h-[130px] flex justify-center items-center mt-[40px] gap-[10px]'>
+          <img src={leftArrow} alt="" className='w-[30px] h-[30px] cursor-pointer flex justify-center items-center' />
+          <img src={image1} alt="" className='w-[130px] h-full'/>
+          <img src={image2} alt="" className='w-[130px] h-full'/>
+          <img src={image3} alt="" className='w-[130px] h-full'/>
+          <img src={image4} alt="" className='w-[130px] h-full'/>
+          <img src={image5} alt="" className='w-[130px] h-full'/>
+          <img src={image6} alt="" className='w-[130px] h-full'/>
+          <img src={image7} alt="" className='w-[130px] h-full'/>
+          <img src={image8} alt="" className='w-[130px] h-full'/>
+          <img src={image9} alt="" className='w-[130px] h-full'/>
+          <img src={rightArrow} alt="" className='w-[30px] h-[30px] cursor-pointer flex justify-center items-center' />
+        </div> */}
+        <div className='flex justify-center items-center mt-[40px]'>
+        
+          <Pagination />
+          
+        </div>
 
-        <div className="w-full mx-auto bg-[#D6EFD8] mt-[40px] rounded-[4px] pb-[30px] relative" id="report-container">
+        <div className="w-full mx-auto flex flex-col justify-center items-center bg-[#D6EFD8] mt-[20px] rounded-[4px] pb-[30px] relative" id="report-container">
           <div className="flex justify-between" id="reports">
             <div className="p-[30px]" id="report-success">
               <div className="w-[600px] h-[600px]" id="padding-30">
                 <div id="left-word">
                   <h1 className="text-[25px] font-bold">신고 완료</h1>
-                  <p className="text-[15px] mb-[30px]">
+                  <p className="w-full text-[15px] mb-[30px]">
                     30개 이상의 공감을 얻어 민원신고가 완료되었어요!<br />
                     작성자는 30 포인트를 받을 수 있습니다.
                   </p>
@@ -146,8 +167,8 @@ const MainPage = () => {
               <div className="w-[600px] h-[600px]" id="padding-30">
                 <div id="left-word">
                   <h1 className="text-[25px] font-bold">최신 포럼</h1>
-                  <p className="text-[15px] mb-[30px]">
-                    지역구의 무단투기 현장을 찾아 제보하고 20 포인트를 받으세요! 30명의 동의를 얻으면 추가 포인트까지!
+                  <p className="flex text-[15px] mb-[30px]">
+                    지역구의 무단투기 현장을 찾아 제보하고 20 포인트를 받으세요!<br/> 30명의 동의를 얻으면 추가 포인트까지!
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-[10px]" id="img-container2">
@@ -162,10 +183,10 @@ const MainPage = () => {
             </div>
           </div>
 
-          <div className="flex justify-center items-center mt-[25px] pb-[25px]">
-            <button className="px-[20px] py-[10px] bg-[#365a31] text-white font-bold rounded">
+          <div className="flex justify-center items-center">
+            <Link to="/Pagination" className="px-[20px] py-[10px] bg-[#365a31] text-white font-bold rounded">
               더보기
-            </button>
+            </Link>
           </div>
         </div>
 

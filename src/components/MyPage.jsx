@@ -3,7 +3,7 @@ import Header from './Header';
 import Footer from './Footer';
 
 import image1 from '../images/image1.jpg';
-import edit from '../images/ico-edit.png';
+import edit from '../images/edit.svg';
 
 const MyPage = () => {
     return (
@@ -11,9 +11,9 @@ const MyPage = () => {
             <Header />
                 <div className='w-[1400px] h-[1000px] mx-auto mt-[70px] justify-center'>
                   <div className='flex'>
-                    <div className='w-[150px] h-[60px] text-[20px] flex justify-center items-center rounded-3 bg-[#D6EFD8]'>내 정보</div> 
-                    <div className='w-[150px] h-[60px] text-[20px] flex justify-center items-center rounded-2 border-2 rounded-xl'>내 리뷰</div>  
-                    <div className='w-[150px] h-[60px] text-[20px] flex justify-center items-center rounded-2 border-2 rounded-xl'>내 포럼</div>   
+                    <div className='w-[150px] h-[60px] text-[20px] flex justify-center items-center border-2 rounded-xl bg-[#D6EFD8] cursor-pointer hover:bg-[#365a31] hover:text-white'>내 정보</div> 
+                    <div className='w-[150px] h-[60px] text-[20px] flex justify-center items-center border-2 rounded-xl cursor-pointer hover:bg-[#365a31] hover:text-white'>내 리뷰</div>  
+                    <div className='w-[150px] h-[60px] text-[20px] flex justify-center items-center border-2 rounded-xl cursor-pointer hover:bg-[#365a31] hover:text-white'>내 포럼</div>   
                   </div>
 
                     <div className='flex justify-between'>
@@ -29,8 +29,8 @@ const MyPage = () => {
                                         </div>
                                         <div className='w-[300px] h-[200px] mt-[40px] text-[20px] space-y-[10px]'>
                                             <p>null</p>
-                                            <p>dngus523@kakao.com</p>
-                                            <p>김민지</p>
+                                            <p>elice@kakao.com</p>
+                                            <p>엘리스</p>
                                             <p>010-0000-0000</p>
                                         </div>
                                     </div>
@@ -91,9 +91,9 @@ const MyPage = () => {
                             <div className='flex flex-col w-[300px] rounded-xl border-2 h-[420px] items-center'>
                                 <img src={image1} alt="image 1" className='w-[250px] h-[250px] mt-[10px] rounded-[125px]'/>
                                 <div className='flex flex-col items-center mt-[10px]'>
-                                    <div className='flex items-center justify-center space-x-[10px]'>
+                                    <div className='flex items-center justify-center space-x-[30px]'>
                                         <p className='text-[25px]'>닉네임</p>
-                                        <img src={edit} alt="edit image" className='w-[30px] h-[30px]'/>
+                                        <img src={edit} alt="edit image" className='w-[30px] h-[30px] cursor-pointer'/>
                                     </div>
                                     <div className='flex flex-col items-center mt-[20px]'>
                                         <div className='flex justify-between w-full px-[10px] gap-[50px]'>

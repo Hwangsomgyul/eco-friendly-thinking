@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Star from './Star';
 
 import image1 from '../images/image1.jpg';
 import image2 from '../images/image2.jpg';
@@ -31,11 +32,7 @@ const Modal = () => {
                             <p className="text-[20px] font-bold mb-[10px] flex justify-center">스타벅스 럭키비키점</p>
                             <p className="flex justify-center">서울 중구 퇴계로 100</p>
                             <div className="gap-[5px] flex justify-center text-[20px]">
-                                <span className="star">☆</span>
-                                <span className="star">☆</span>
-                                <span className="star">☆</span>
-                                <span className="star">☆</span>
-                                <span className="star">☆</span>
+                                <Star totalStars={5} />
                             </div>
                             <div  className="flex justify-end items-end">
                                 <button className="rounded-xl p-2 bg-[#D6EFD8]">리뷰추가</button>
