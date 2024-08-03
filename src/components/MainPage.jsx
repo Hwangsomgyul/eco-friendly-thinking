@@ -184,7 +184,7 @@ const MainPage = () => {
           </div>
 
           <div className="flex justify-center items-center">
-            <Link to="/Pagination" className="px-[20px] py-[10px] bg-[#365a31] text-white font-bold rounded">
+            <Link to="/ReviewPage" className="px-[20px] py-[10px] bg-[#365a31] text-white font-bold rounded">
               더보기
             </Link>
           </div>
