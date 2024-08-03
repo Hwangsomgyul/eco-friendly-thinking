@@ -32,7 +32,7 @@ const Header = () => {
                         소개
                     </Link>
                     <Link
-                        to="/Pagination"
+                        to="/ReviewPage"
                         className={`w-[120px] h-[50px] flex items-center justify-center cursor-pointer ${getLinkClassName('/Pagination')}`}
                     >
                         리뷰
