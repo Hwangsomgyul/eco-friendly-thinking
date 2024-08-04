@@ -10,9 +10,11 @@ module.exports = {
       padding: changePx,
       width: changePx,
       gap: changePx,
+      margin: changePx,
       colors: {
         blackGreen: "#2B422A",
         lightGreen: "#D6EFD8",
+        green: "#508D4E",
       },
     },
   },
