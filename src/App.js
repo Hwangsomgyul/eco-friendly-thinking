@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import React from "react";
-import { Routes, Route } from "react-router-dom";
 
 import MainPage from "./components/MainPage";
 import Pagination from "./components/Pagination";
@@ -13,9 +11,12 @@ import KakaoMap from "./components/KakaoMap";
 import Star from "./components/Star";
 
 import Modal from "./components/Modal";
-import ReviewModal from "./components/ReviewModal";
+import ReviewModal from "./components/reviewModal";
 import PhotoReviewModal from "./components/PhotoReivewModal";
 import ForumModal from "./components/ForumModal";
+
+import { Login } from "./pages/Login";
+import { RecycleRate } from "./asserts/Chart/RecycleRate";
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
       <Route path="/ReviewModal" element={<ReviewModal />} />
       <Route path="/PhotoReviewModal" element={<PhotoReviewModal />} />
       <Route path="/ForumModal" element={<ForumModal />} />
+      <Route path="/Login" element={<Login />} />
+      <Route path="/" element={<RecycleRate />} />
 
       <Route path="/KakaoMap" element={<KakaoMap />} />
     </Routes>
