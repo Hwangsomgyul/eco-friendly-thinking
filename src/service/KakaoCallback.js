@@ -10,12 +10,14 @@ const KakaoCallback = () => {
     const code = new URL(window.location.href).searchParams.get("code");
     if (code) {
       axios
-        .post(`${process.env.REACT_APP_API_URL}/auth/kakao`, { code })
+        .post(`${process.env.REACT_APP_API_URL}/auth/login`, {
+          access_token: code,
+        })
         .then((response) => {
           const { token, user } = response.data;
           localStorage.setItem("token", token);
           localStorage.setItem("user", JSON.stringify(user));
-          navigate("/dashboard");
+          navigate("/MainPage");
         })
         .catch((error) => {
           console.error("카카오 로그인 에러:", error);
