@@ -8,7 +8,7 @@ import { StoreBanner } from "../components/StoreBanner";
 
 const eventUrl = "/images/banner.png";
 
-const MyPage = () => {
+const Store = () => {
   // 이벤트 api 호출
   // 불러서 map으로 링크 만들어주기
 
@@ -53,4 +53,4 @@ const MyPage = () => {
   );
 };
 
-export default MyPage;
+export default Store;
