@@ -9,7 +9,7 @@ import ReviewPage from './components/ReviewPage.jsx';
 import Pagination from './components/Pagination.jsx';
 import MyPage from './components/MyPage.jsx';
 import Forum from './components/Forum.jsx';
-import KakaoMap from './components/KakaoMap.jsx';
+import KakaoFinal from './components/KakaoFinal.jsx';
 import Star from './components/Star.jsx';
 import Modal from './components/Modal.jsx';
 import ReviewModal from './components/ReviewModal.jsx';
@@ -38,7 +38,7 @@ function App() {
           <Route path="/ReviewModal" element={<ReviewModal />} />
           <Route path="/PhotoReviewModal" element={<PhotoReviewModal />} />
           <Route path="/ForumModal" element={<ForumModal />} />
-          <Route path="/KakaoMap" element={<KakaoMap />} />
+          <Route path="/KakaoFinal" element={<KakaoFinal />} />
           <Route path="/new-kakao" element={<NewKakao />} />
         </Routes>
       </div>

@@ -7,6 +7,28 @@ const ReviewPage = () => {
   const [search, setSearch] = useState('');
   const [reviews, setReviews] = useState([]);
 
+//  const handleChange = (e) => { //
+//   setSearch(e.target.value);
+//  };
+
+//  const handleSearch = () => { //
+//   if(!search) {
+//     return;
+//   }
+//  }
+
+//       const ps = new window.kakao.maps.services.Places(); //
+
+//       ps.keywordSearch(search, (data, status, _pagination) => { //
+//         if (status !== window.kakao.maps.services.Status.OK) {
+//           return;
+//         }
+
+//         setAddresses(data); //
+//       });
+
+
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -42,6 +64,8 @@ const ReviewPage = () => {
               >
                 새로운 리뷰를 등록하기 +
               </div>
+
+
               <div className="flex gap-[10px]">
                 <input
                   type="text"
@@ -58,6 +82,21 @@ const ReviewPage = () => {
                   검색
                 </button>
               </div>
+
+              {/* // <section className="flex w-full h-[780px] justify-end gap-8">
+                <div className="relative border-2 border-[#365a31] gap-[10px] p-4 h-[780px] w-[400px]">
+                  <SearchField
+                    search={search}
+                    onChange={handleChange}
+                    onSearch={handleSearch}
+                  />
+                  <AddressList list={addresses} onClickAddress={handleClickAddress} />
+                </div>
+
+              </section>*/ }
+
+
+              
             </div>
           </div>
         </div>

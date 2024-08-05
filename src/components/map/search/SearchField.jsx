@@ -1,13 +1,13 @@
 export default function SearchField({ search, onChange, onSearch }) {
   return (
-    <div className="flex gap-4">
+    <div className="p-8 flex w-400px gap-[15px]">
       <input
-        className="flex-1 border-[1px] border-solid border-red-300"
+        className="flex-1 border-2 rounded p-2 w-[270px] h-[40px]"
         value={search}
         onChange={onChange}
       />
       <button
-        className="w-[50px] border-[1px] border-solid border-red-300"
+        className="bg-[#365a31] text-white py-2 rounded w-[70px] h-[40px]"
         onClick={onSearch}
       >
         검색

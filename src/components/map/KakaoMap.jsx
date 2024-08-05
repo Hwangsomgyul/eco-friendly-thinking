@@ -8,7 +8,7 @@ export default function KakaoMap({
   onCreateMap,
 }) {
   return (
-    <section className="h-[740px] w-[980px]">
+    <section className="h-[780px] w-[980px]">
       <Map
         style={{ width: '100%', height: '100%' }}
         center={{

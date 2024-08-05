@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Star from './Star';
+import { Link } from 'react-router-dom';
 
 import image1 from '../images/image1.jpg';
 import image2 from '../images/image2.jpg';
@@ -8,7 +9,7 @@ import image4 from '../images/image4.jpg';
 import image5 from '../images/image5.jpg';
 import image6 from '../images/image6.jpg';
 
-const Modal = ({ place_name, road_address_name, onClose }) => {
+const Modal = ({ place_name, road_address_name, onClose, onOpenReviewModal }) => {
   // const handleClose = (event) => {
   //     if(event.target === event.currentTarget) {
   //         onClose();
@@ -20,8 +21,8 @@ const Modal = ({ place_name, road_address_name, onClose }) => {
   // }
 
   return (
-    <div className="dimmed">
-      <section className="h-[640px] w-[350px] flex-col justify-center border-2">
+    <div className="dimmed h-[640px]">
+      <section className=" h-[640px] w-[350px] flex-col justify-center border-2">
         <div className="modal-header" modal-header>
           <div className="mt-[10px]">
             <div className="mr-[15px] flex justify-end">
@@ -38,9 +39,9 @@ const Modal = ({ place_name, road_address_name, onClose }) => {
                 <Star totalStars={5} />
               </div>
               <div className="flex items-end justify-end">
-                <button className="rounded-xl bg-[#D6EFD8] p-2">
-                  리뷰추가
-                </button>
+                {/* <Link to="/ReviewPage" className="rounded-xl bg-[#D6EFD8] p-2 hover:text-white hover:bg-[#1A5319]">
+                  리뷰하러 가기
+                </Link> */}
               </div>
               <div className="mt-4 border-t border-[#365a31]"></div>
             </div>
@@ -70,10 +71,10 @@ const Modal = ({ place_name, road_address_name, onClose }) => {
             </div>
           </div>
           <div
-            className="m-auto flex h-[30px] w-[80px] items-center justify-center rounded-xl bg-[#365a31]"
+            className="m-auto flex h-[30px] w-[80px] items-center justify-center rounded-xl bg-[#365a31] hover:font-bold hover:bg-[#80AF81]"
             modal-bottom
           >
-            <button className="text-white">더보기</button>
+            <button onClick={onOpenReviewModal} className="text-white transition">리뷰하기</button>
           </div>
         </div>
       </section>
