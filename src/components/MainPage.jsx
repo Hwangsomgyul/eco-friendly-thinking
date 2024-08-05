@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './mainPage.css';
 import {Link} from 'react-router-dom';
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import Pagination from './Pagination';
 
 import image1 from '../images/image1.jpg';
@@ -78,18 +76,17 @@ const MainPage = () => {
   
   return (
     <div>
-      <Header />
       <div className='w-[1400px] h-[1900px] mx-auto mt-[100px] justify-center'>
         <div title>
-            <div className='flex font-bold text-[25px] text-[#365a31] items-center justify-center'>지구용사
-                <p className='font-normal text-black'>님의 경험을 공유해주세요!</p>
+            <div className='flex font-bold text-[25px] text-[#365a31] items-center justify-center'>지구용사 
+                <p className='font-normal text-black'> 님의 경험을 공유해 주세요!</p>
             </div>
         </div>
 
         <div>
             <div className='flex items-center text-[15px] justify-center w-[1400px] h-[60px] mt-[30px] mb-[30px] mx-auto gap-[30px] rounded-md border-2 border-[#365a31]'>
                 <p>24-07-31</p>
-                <p>김민지민지 님의 종로구 무단투기 제보가 55개의 공감을 얻어 해당 구청에 민원 제기될 예정입니다!</p>
+                <p>김민지민지 님의 종로구 무단 투기 제보가 55개의 공감을 얻어 해당 구청에 민원 제기될 예정입니다!</p>
                 <p>+50 point</p>
             </div>
         </div>
@@ -114,7 +111,7 @@ const MainPage = () => {
                             >
                               검색하기
                             </button>
-                            <p className='mt-2 text-sm text-gray-600'>리뷰쓰고 20point</p>
+                            <p className='mt-2 text-sm text-gray-600'>리뷰 쓰고 +20 point!</p>
                         </form>
                     </div>
                 </div>
@@ -148,7 +145,7 @@ const MainPage = () => {
                 <div id="left-word">
                   <h1 className="text-[25px] font-bold">신고 완료</h1>
                   <p className="w-full text-[15px] mb-[30px]">
-                    30개 이상의 공감을 얻어 민원신고가 완료되었어요!<br />
+                    30개 이상의 공감을 얻어 민원 신고가 완료되었어요!<br />
                     작성자는 30 포인트를 받을 수 있습니다.
                   </p>
                 </div>
@@ -184,14 +181,13 @@ const MainPage = () => {
           </div>
 
           <div className="flex justify-center items-center">
-            <Link to="/Pagination" className="px-[20px] py-[10px] bg-[#365a31] text-white font-bold rounded">
+            <Link to="/ReviewPage" className="px-[20px] py-[10px] bg-[#365a31] text-white font-bold rounded">
               더보기
             </Link>
           </div>
         </div>
 
       </div>
-      <Footer />
     </div>
   );
 };

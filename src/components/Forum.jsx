@@ -1,6 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import Modal from '../components/Modal';
 
 import boxOk from '../images/boxOk.svg';
@@ -76,7 +74,6 @@ const Forum = () => {
 
     return (
         <div>
-            <Header />
             <div className="mx-auto w-[1400px] h-[1780px] relative border-2 mt-[110px] gap-[25px]">
                 <div className='flex w-full h-[430px] border-2 gap-[20px]'>
                     <div id='map' className='w-[790px] h-[430px] relative z-0'>
@@ -123,7 +120,6 @@ const Forum = () => {
                 </div>
                 <div onClick={Modal}>모달창</div>
             </div>
-            <Footer />
         </div>
     )
 };
