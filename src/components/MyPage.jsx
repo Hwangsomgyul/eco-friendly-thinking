@@ -8,7 +8,6 @@ import edit from '../images/edit.svg';
 const MyPage = () => {
     return (
         <div>
-            <Header />
                 <div className='w-[1400px] h-[1000px] mx-auto mt-[70px] justify-center'>
                   <div className='flex'>
                     <div className='w-[150px] h-[60px] text-[20px] flex justify-center items-center border-2 rounded-xl bg-[#D6EFD8] cursor-pointer hover:bg-[#365a31] hover:text-white'>내 정보</div> 
@@ -122,7 +121,6 @@ const MyPage = () => {
                         </div>
                     </div>
             </div>
-            <Footer />
         </div>
     )
 }
