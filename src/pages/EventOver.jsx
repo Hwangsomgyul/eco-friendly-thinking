@@ -1,11 +1,9 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 
 import { UserInfo } from "../components/UserInfo";
 import { Notice } from "../components/Notice";
-import { Banner } from "../components/Store/Banner";
+import { StoreBanner } from "../components/StoreBanner";
 
 const eventUrl = "/images/banner.png";
 
@@ -38,12 +36,12 @@ const MyPage = () => {
               </div>
               <div className="bg-white mx-[40px]">
                 <div className="flex gap-30 flex-wrap">
-                  <Banner
+                  <StoreBanner
                     url={eventUrl}
                     handleLink={false}
                     className=""
-                  ></Banner>
-                  <Banner url={eventUrl}></Banner>
+                  ></StoreBanner>
+                  <StoreBanner url={eventUrl}></StoreBanner>
 
                   {/* <Banner url={eventUrl}></Banner> */}
                 </div>

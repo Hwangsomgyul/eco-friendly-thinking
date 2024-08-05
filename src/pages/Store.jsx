@@ -1,13 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-
 import image1 from "../images/image1.jpg";
 import edit from "../images/edit.svg";
 import { UserInfo } from "../components/UserInfo";
 import { Notice } from "../components/Notice";
-import { Banner } from "../components/Store/Banner";
+import { StoreBanner } from "../components/StoreBanner";
 
 const eventUrl = "/images/banner.png";
 
@@ -40,8 +37,8 @@ const MyPage = () => {
               </div>
               <div className="bg-white mx-[40px]">
                 <div className="flex gap-30 flex-wrap">
-                  <Banner url={eventUrl} handleLink={true}></Banner>
-                  <Banner url={eventUrl}></Banner>
+                  <StoreBanner url={eventUrl} handleLink={true}></StoreBanner>
+                  <StoreBanner url={eventUrl}></StoreBanner>
                 </div>
               </div>
             </div>
