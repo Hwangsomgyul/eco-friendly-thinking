@@ -3,8 +3,8 @@ main aside {
   height: 100vh;
   position: absolute;
   top: 0px;
-  /* left: -100%; 왼쪽 화면 바깥에 배치 */
-  /* opacity: 0; */
+  left: -100%;
+  opacity: 0;
   z-index: 2; /*2로 설정하며 section은 덮고 h1과 nav는 aside 위쪽에 배치*/
   padding: 20vh 7vw 14vh 20vw;
   display: flex;

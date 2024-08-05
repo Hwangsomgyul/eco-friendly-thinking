@@ -13,9 +13,10 @@ import KakaoMap from "./components/KakaoMap";
 import Star from "./components/Star";
 
 import Modal from "./components/Modal";
-import ReviewModal from "./components/ReviewModal.jsx";
+import ReviewModal from "./components/reviewModal.jsx";
 // import PhotoReviewModal from "./components/PhotoReviewModal.jsx";
 import ForumModal from "./components/ForumModal";
+import KakaoCallback from "./service/KakaoCallback.js";
 
 import { Login } from "./pages/Login.jsx";
 
@@ -36,6 +37,7 @@ function App() {
       <Route path="/ForumModal" element={<ForumModal />} />
 
       <Route path="/" element={<Login />} />
+      <Route path="/auth/kakao/callback" element={<KakaoCallback />} />
 
       <Route path="/KakaoMap" element={<KakaoMap />} />
     </Routes>
