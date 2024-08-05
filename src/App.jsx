@@ -20,14 +20,14 @@ import ForumModal from "./components/ForumModal.jsx";
 import Footer from "./components/Footer.jsx";
 
 function App() {
-  if (!localStorage.getItem("token")) {
-    return (
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/auth/kakao/callback" element={<KakaoCallback />} />
-      </Routes>
-    );
-  }
+  // if (!localStorage.getItem("token")) {
+  //   return (
+  //     <Routes>
+  //       <Route path="/" element={<Login />} />
+  //       <Route path="/auth/kakao/callback" element={<KakaoCallback />} />
+  //     </Routes>
+  //   );
+  // }
   return (
     <div className="app-container">
       <Header />
