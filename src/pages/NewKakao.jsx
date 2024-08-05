@@ -3,13 +3,25 @@ import { useState } from 'react';
 import SearchField from '../components/map/search/SearchField';
 import KakaoMap from '../components/map/KakaoMap';
 import AddressList from '../components/map/search/AddressList';
-import ReviewModal from '../components/ReviewModal';
+import Modal from '../components/Modal';
 
 export default function NewKakao() {
+  const [open, setOpen] = useState(false);
+
   const [search, setSearch] = useState('');
-  const [markers, setMarkers] = useState([]);
   const [map, setMap] = useState(null);
   const [addresses, setAddresses] = useState([]);
+
+  const [markers, setMarkers] = useState([]);
+  const [selectedMarker, setSelectedMarker] = useState(null);
+
+  const handleOpenModal = () => {
+    setOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpen(false);
+  };
 
   const handleCreateMap = (map) => {
     setMap(map);
@@ -27,7 +39,7 @@ export default function NewKakao() {
     // eslint-disable-next-line no-undef
     const ps = new kakao.maps.services.Places();
 
-    ps.keywordSearch('이태원 맛집', (data, status, _pagination) => {
+    ps.keywordSearch(search, (data, status, _pagination) => {
       if (status !== kakao.maps.services.Status.OK) {
         return;
       }
@@ -37,7 +49,7 @@ export default function NewKakao() {
       const bounds = new kakao.maps.LatLngBounds();
       const markers = [];
 
-      for (var i = 0; i < data.length; i++) {
+      for (let i = 0; i < data.length; i++) {
         // @ts-ignore
         markers.push({
           position: {
@@ -58,6 +70,16 @@ export default function NewKakao() {
     });
   };
 
+  const handleClickAddress = (marker) => {
+    handleSelectMarker(marker);
+    handleOpenModal();
+  };
+
+  const handleSelectMarker = (marker) => {
+    console.log(marker);
+    setSelectedMarker(marker);
+  };
+
   return (
     <section className="flex justify-center gap-8">
       <div className="relative">
@@ -66,10 +88,21 @@ export default function NewKakao() {
           onChange={handleChange}
           onSearch={handleSearch}
         />
-        <AddressList list={addresses} />
+        <AddressList list={addresses} onClickAddress={handleClickAddress} />
       </div>
-      <KakaoMap markers={markers} onCreateMap={handleCreateMap} />
-      <ReviewModal />
+      <KakaoMap
+        selectedMarker={selectedMarker}
+        markers={markers}
+        onSelectMarker={handleSelectMarker}
+        onCreateMap={handleCreateMap}
+      />
+      {open && (
+        <Modal
+          place_name={selectedMarker.place_name}
+          road_address_name={selectedMarker.road_address_name}
+          onClose={handleCloseModal}
+        />
+      )}
     </section>
   );
 }

@@ -1,16 +1,12 @@
 /* eslint-disable no-undef */
-import { useState } from 'react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
-export default function KakaoMap({ markers, onCreateMap }) {
-  const [selectedMarker, setSelectedMarker] = useState(null);
-  // TODO: 일단 냅둔다. 선택하면 모달 띄울 때 쓸지도 모름
-  const [marker, setMarker] = useState(null);
-
-  const handleClickMarker = (marker) => () => {
-    setSelectedMarker(marker);
-  };
-
+export default function KakaoMap({
+  selectedMarker,
+  markers,
+  onSelectMarker,
+  onCreateMap,
+}) {
   return (
     <section className="h-[740px] w-[980px]">
       <Map
@@ -27,7 +23,7 @@ export default function KakaoMap({ markers, onCreateMap }) {
           <MapMarker
             key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
             position={marker.position}
-            onClick={handleClickMarker(marker)}
+            onClick={(marker) => onSelectMarker(marker)}
           >
             {selectedMarker?.content === marker.content && (
               <div style={{ color: '#000' }}>{marker.content}</div>
