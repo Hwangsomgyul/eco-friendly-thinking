@@ -4,6 +4,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const routes = require('./src/routes/routes');
 const sequelize = require('./src/config/db.config');
+const { expressjwt: jwt } = require('express-jwt');
 
 dotenv.config();
 
@@ -15,6 +16,13 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(cookieParser());
+
+//토큰 검증
+app.use(jwt({
+  secret: process.env.JWT_SECRET,
+  algorithms: ['HS256'],
+  getToken: req => req.cookies.token
+}).unless({ path: ['/api/login', '/api/register'] }));
 
 app.use('/', routes);
 

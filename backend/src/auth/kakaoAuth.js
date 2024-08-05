@@ -53,11 +53,11 @@ const kakaoAuth = {
       });
 
       const { access_token, id_token, refresh_token } = tokenResponse.data;
-      console.log(access_token, id_token, refresh_token);
+      
 
       // ID 토큰 검증
       const decodedIdToken = await verifyIdToken(id_token);
-      console.log(decodedIdToken);
+      
 
       // 검증된 ID 토큰에서 사용자 정보 추출
       const { sub: kakaoId, email, nickname } = decodedIdToken;
@@ -74,7 +74,7 @@ const kakaoAuth = {
 
         res.cookie('refresh_token', refresh_token, {
           httpOnly: true,
-          secure: NODE_ENV === 'production',
+          secure: false,
           maxAge: 30 * 24 * 60 * 60 * 1000, // 30일
         });
 
@@ -93,7 +93,7 @@ const kakaoAuth = {
 
       res.cookie('refresh_token', refresh_token, {
         httpOnly: true,
-        secure: NODE_ENV === 'production',
+        secure: false,
         maxAge: 30 * 24 * 60 * 60 * 1000, // 30일
       });
 

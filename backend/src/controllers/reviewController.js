@@ -5,7 +5,7 @@ exports.createReview = async (req, res) => {
     const review = await ReviewService.createReview(req.body);
     res.status(201).json(review);
   } catch (error) {
-    res.status(400).json({ message: '리뷰 생성 실패', error });
+    res.status(500).json({ message: '리뷰 생성 중 예기치 않은 오류가 발생했습니다.', error });
   }
 };
 
