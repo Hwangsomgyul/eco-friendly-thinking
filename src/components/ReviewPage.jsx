@@ -80,7 +80,13 @@ const ReviewPage = () => {
         </div>
       </div>
       {isModalOpen && (
-        <ReviewModal onClose={closeModal} onSave={handleSaveReview} />
+        // FIXME: place_name, road_address_name 내용을 전달해 주어야 함
+        <ReviewModal
+          place_name=""
+          road_address_name=""
+          onClose={closeModal}
+          onSave={handleSaveReview}
+        />
       )}
     </div>
   );
