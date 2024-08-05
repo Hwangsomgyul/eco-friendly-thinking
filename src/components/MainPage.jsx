@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './mainPage.css';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -16,38 +16,54 @@ import image7 from '../images/image7.jpg';
 import image8 from '../images/image8.jpg';
 import image9 from '../images/image9.jpg';
 
-import leftArrow from '../images/left-arrow.svg';
-import rightArrow from '../images/right-arrow.svg';
-
 const MainPage = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(''); // 검색어 상태를 관리
+  const [map, setMap] = useState(null); // 지도 관리
+  const [markers, setMarkers] = useState([]); // 지도에 표시된 마커 관리
+  const [kakaoLoaded, setKakaoLoaded] = useState(false); // 카카오맵 sdk
+  const [places, setPlaces] = useState([]); // 검색 결과 저장
 
   useEffect(() => {
     const loadKakaoMap = () => {
       const script = document.createElement('script');
       script.src = 'https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=df5c8b8d6500a3ce6d4151f4e4900ceb';
       script.async = true;
-      
+
       script.onload = () => {
-        console.log('Script loaded successfully');
+        console.log('Kakao Maps SDK loaded');
         if (window.kakao && window.kakao.maps) {
           window.kakao.maps.load(() => {
+            console.log('Kakao Maps loaded');
 
-            var markers = [];
             const mapContainer = document.getElementById('map');
-
             if (mapContainer) {
-              const options = { 
+              const options = {
                 center: new window.kakao.maps.LatLng(37.56000302825312, 126.97540593203321),
-                level: 3 
+                level: 3,
               };
-              const map = new window.kakao.maps.Map(mapContainer, options);
-  
-              const markerPosition = new window.kakao.maps.LatLng(37.56000302825312, 126.97540593203321);
-              const marker = new window.kakao.maps.Marker({
-                position: markerPosition
+              const mapInstance = new window.kakao.maps.Map(mapContainer, options);
+              setMap(mapInstance);
+              setKakaoLoaded(true);
+
+              window.kakao.maps.event.addListener(mapInstance, 'click', (mouseEvent) => {
+                const latlng = mouseEvent.latLng;
+
+                const marker = new window.kakao.maps.Marker({
+                  map: mapInstance,
+                  position: latlng,
+                });
+
+                const infowindow = new window.kakao.maps.InfoWindow({
+                  content: `<div style="padding:5px;font-size:12px;">클릭한 위치입니다</div>`,
+                });
+
+                window.kakao.maps.event.addListener(marker, 'click', () => {
+                  infowindow.open(mapInstance, marker);
+                });
+
+                markers.forEach(m => m.setMap(null));
+                setMarkers([marker]);
               });
-              marker.setMap(map);
             } else {
               console.error('Map container not found');
             }
@@ -56,12 +72,14 @@ const MainPage = () => {
           console.error('Kakao Maps not available');
         }
       };
+
       script.onerror = (error) => {
         console.error('Error loading script:', error);
       };
+
       document.head.appendChild(script);
     };
-  
+
     loadKakaoMap();
   }, []);
 
@@ -71,74 +89,106 @@ const MainPage = () => {
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    // 검색어 처리 로직 추가
-    console.log('Search term:', searchTerm);
+    if (!searchTerm.trim() || !kakaoLoaded) return;
+
+    if (!window.kakao || !window.kakao.maps || !window.kakao.maps.services) {
+      console.error('Kakao Maps Services not available');
+      return;
+    }
+
+    const ps = new window.kakao.maps.services.Places();
+    ps.keywordSearch(searchTerm, (data, status) => {
+      if (status === window.kakao.maps.services.Status.OK) {
+        markers.forEach(marker => marker.setMap(null));
+        setMarkers([]);
+
+        const newMarkers = data.map(place => {
+          const marker = new window.kakao.maps.Marker({
+            map: map,
+            position: new window.kakao.maps.LatLng(place.y, place.x),
+          });
+
+          window.kakao.maps.event.addListener(marker, 'click', () => {
+            const infowindow = new window.kakao.maps.InfoWindow({
+              content: `<div style="padding:5px;font-size:12px;">${place.place_name}</div>`,
+            });
+            infowindow.open(map, marker);
+          });
+
+          return marker;
+        });
+
+        setMarkers(newMarkers);
+
+        const bounds = new window.kakao.maps.LatLngBounds();
+        data.forEach(place => {
+          bounds.extend(new window.kakao.maps.LatLng(place.y, place.x));
+        });
+        map.setBounds(bounds);
+
+        setPlaces(data);
+      } else {
+        console.error('Search failed:', status);
+      }
+    });
   };
 
-  
   return (
     <div>
       <Header />
       <div className='w-[1400px] h-[1900px] mx-auto mt-[100px] justify-center'>
-        <div title>
-            <div className='flex font-bold text-[25px] text-[#365a31] items-center justify-center'>지구용사
-                <p className='font-normal text-black'>님의 경험을 공유해주세요!</p>
-            </div>
+        <div className='flex font-bold text-[25px] text-[#365a31] items-center justify-center'>
+          지구용사
+          <p className='font-normal text-black'>님의 경험을 공유해주세요!</p>
         </div>
 
         <div>
-            <div className='flex items-center text-[15px] justify-center w-[1400px] h-[60px] mt-[30px] mb-[30px] mx-auto gap-[30px] rounded-md border-2 border-[#365a31]'>
-                <p>24-07-31</p>
-                <p>김민지민지 님의 종로구 무단투기 제보가 55개의 공감을 얻어 해당 구청에 민원 제기될 예정입니다!</p>
-                <p>+50 point</p>
-            </div>
+          <div className='flex items-center text-[15px] justify-center w-[1400px] h-[60px] mt-[30px] mb-[30px] mx-auto gap-[30px] rounded-md border-2 border-[#365a31]'>
+            <p>24-07-31</p>
+            <p>김민지민지 님의 종로구 무단투기 제보가 55개의 공감을 얻어 해당 구청에 민원 제기될 예정입니다!</p>
+            <p>+50 point</p>
+          </div>
         </div>
 
         <div className='flex relative w-full h-[780px] justify-end'>
-            <div id='map' className='w-[980px] h-[780px] absolute rounded-xl'></div>
+          <div id='map' className='w-[980px] h-[780px] absolute rounded-xl'></div>
 
-            <div id="menu_wrap" className='w-[400px] h-[780px] border-2 border-[#365a31] gap-[30px] absolute top-0 left-0'>
-                <div class="option" >
-                    <div className='w-[270px] border-[#365a31]'>
-                        <form onSubmit={handleSearchSubmit} className="flex flex-col p-4">
-                            <input
-                              type="text"
-                              value={searchTerm}
-                              onChange={handleSearchChange}
-                              placeholder="Search..."
-                              className="border rounded p-2 mb-2"
-                            />
-                            <button
-                              type="submit"
-                              className="bg-[#365a31] text-white py-2 rounded"
-                            >
-                              검색하기
-                            </button>
-                            <p className='mt-2 text-sm text-gray-600'>리뷰쓰고 20point</p>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <ul id="placesList"></ul>
-            <div id="pagination"></div>
+          <div id="menu_wrap" className='w-[400px] h-[780px] border-2 border-[#365a31] gap-[10px] absolute top-0 left-0 p-4'>
+            <form onSubmit={handleSearchSubmit} className="flex flex-col gap-3 mb-4">
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={handleSearchChange}
+                placeholder="검색어를 입력하세요"
+                className="border-2 rounded p-2 w-full h-[40px]"
+              />
+              <button
+                type="submit"
+                className="bg-[#365a31] text-white py-2 rounded w-full h-[40px]"
+              >
+                검색하기
+              </button>
+            </form>
+
+            {/* 검색 결과 목록 */}
+            {places.length > 0 && (
+              <div className="search-results max-h-[600px] overflow-y-auto bg-white border-2 border-[#365a31] rounded-md p-2">
+                <h2 className="text-lg font-bold mb-2">검색 결과</h2>
+                <ul className="list-none">
+                  {places.map(place => (
+                    <li key={place.id} className="border-b py-2">
+                      <p className="font-semibold">{place.place_name}</p>
+                      <p className="text-sm text-gray-600">{place.address_name}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
-        {/* <div className='w-full h-[130px] flex justify-center items-center mt-[40px] gap-[10px]'>
-          <img src={leftArrow} alt="" className='w-[30px] h-[30px] cursor-pointer flex justify-center items-center' />
-          <img src={image1} alt="" className='w-[130px] h-full'/>
-          <img src={image2} alt="" className='w-[130px] h-full'/>
-          <img src={image3} alt="" className='w-[130px] h-full'/>
-          <img src={image4} alt="" className='w-[130px] h-full'/>
-          <img src={image5} alt="" className='w-[130px] h-full'/>
-          <img src={image6} alt="" className='w-[130px] h-full'/>
-          <img src={image7} alt="" className='w-[130px] h-full'/>
-          <img src={image8} alt="" className='w-[130px] h-full'/>
-          <img src={image9} alt="" className='w-[130px] h-full'/>
-          <img src={rightArrow} alt="" className='w-[30px] h-[30px] cursor-pointer flex justify-center items-center' />
-        </div> */}
+
         <div className='flex justify-center items-center mt-[40px]'>
-        
           <Pagination />
-          
         </div>
 
         <div className="w-full mx-auto flex flex-col justify-center items-center bg-[#D6EFD8] mt-[20px] rounded-[4px] pb-[30px] relative" id="report-container">
@@ -168,7 +218,7 @@ const MainPage = () => {
                 <div id="left-word">
                   <h1 className="text-[25px] font-bold">최신 포럼</h1>
                   <p className="flex text-[15px] mb-[30px]">
-                    지역구의 무단투기 현장을 찾아 제보하고 20 포인트를 받으세요!<br/> 30명의 동의를 얻으면 추가 포인트까지!
+                    지역구의 무단투기 현장을 찾아 제보하고 20 포인트를 받으세요!<br /> 30명의 동의를 얻으면 추가 포인트까지!
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-[10px]" id="img-container2">
@@ -189,7 +239,6 @@ const MainPage = () => {
             </Link>
           </div>
         </div>
-
       </div>
       <Footer />
     </div>

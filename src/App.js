@@ -12,6 +12,7 @@ import MyPage from "./components/MyPage";
 import Forum from "./components/Forum";
 
 import KakaoMap from "./components/KakaoMap";
+import KakaoSearch from './components/KakaoSearch.jsx';
 
 
 import Modal from "./components/Modal";
@@ -29,6 +30,7 @@ function App() {
       <Route path="/Pagination" element={<Pagination />} />
       <Route path="/Forum" element={<Forum />} />
       <Route path="/KakaoMap" element={<KakaoMap />} />
+      <Route path="/KakaoSearch" element={<KakaoSearch />} />
 
       
       <Route path="/Modal" element={<Modal />} />
