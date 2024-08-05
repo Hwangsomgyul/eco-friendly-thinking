@@ -1,12 +1,14 @@
 /* eslint-disable no-undef */
 import { useState } from 'react';
-import { Map, MapMarker } from 'react-kakao-maps-sdk';
+import SearchField from '../components/map/search/SearchField';
+import KakaoMap from '../components/map/KakaoMap';
+import AddressList from '../components/map/search/AddressList';
 
 export default function NewKakao() {
   const [search, setSearch] = useState('');
   const [markers, setMarkers] = useState([]);
   const [map, setMap] = useState(null);
-  const [info, setInfo] = useState(null);
+  const [addresses, setAddresses] = useState([]);
 
   const handleCreateMap = (map) => {
     setMap(map);
@@ -46,56 +48,26 @@ export default function NewKakao() {
         // @ts-ignore
         bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
       }
+
       setMarkers(markers);
+      setAddresses(data);
 
       // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
       map.setBounds(bounds);
     });
   };
 
-  const handleClickMarker = (marker) => () => {
-    setInfo(marker);
-  };
-
   return (
-    <section className='flex items-center justify-center'>
-      <div className='flex flex-col gap-4'>
-        <input
-          className='border-[1px] border-solid border-red-300'
-          value={search}
+    <section className="flex justify-center gap-8">
+      <div className="relative">
+        <SearchField
+          search={search}
           onChange={handleChange}
+          onSearch={handleSearch}
         />
-        <button
-          className='border-[1px] border-solid border-red-300'
-          onClick={handleSearch}
-        >
-          검색
-        </button>
+        <AddressList list={addresses} />
       </div>
-      <section className='w-[980px] h-[740px]'>
-        <Map
-          style={{ width: '100%', height: '100%' }}
-          center={{
-            // 지도의 중심좌표
-            lat: 37.560159,
-            lng: 126.975289,
-          }}
-          level={3}
-          onCreate={handleCreateMap}
-        >
-          {markers.map((marker) => (
-            <MapMarker
-              key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
-              position={marker.position}
-              onClick={handleClickMarker(marker)}
-            >
-              {info && info.content === marker.content && (
-                <div style={{ color: '#000' }}>{marker.content}</div>
-              )}
-            </MapMarker>
-          ))}
-        </Map>
-      </section>
+      <KakaoMap markers={markers} onCreateMap={handleCreateMap} />
     </section>
   );
 }
