@@ -1,4 +1,3 @@
-// ReviewModal.jsx
 import React, { useState } from 'react';
 import Star from './Star';
 
@@ -17,11 +16,12 @@ const ReviewModal = ({ onClose, onSave }) => {
             return;
         }
 
-        // 생성된 Blob URL을 상태에 저장
+        // 이미지 파일을 URL로 변환하여 저장
         const imageSrc = imageFile ? URL.createObjectURL(imageFile) : '';
 
+        // onSave 함수를 통해 부모 컴포넌트에 리뷰 데이터 전달
         onSave({ text, rating, imageSrc });
-        onClose();
+        onClose(); // 모달 닫기
     };
 
     const handleFileChange = (e) => {
@@ -54,37 +54,20 @@ const ReviewModal = ({ onClose, onSave }) => {
                         <div className='gap-[5px] flex justify-center text-[20px]'>
                             <Star totalStars={5} onRatingChange={(rating) => setRating(rating)} />
                         </div>
-                        <div className='flex justify-center items-center'>
-                            <button className='text-[#365a31]'>내 리뷰 작성하기</button>
-                        </div>
                     </div>
                 </div>
-                
-                <div className='mt-[20px] m-[15px]'>
-                    <div className='border-t border-[#D6EFD8] mt-4'></div>
-                    <div className='mt-10 flex flex-col items-center'>
-                        <textarea
-                            value={text}
-                            onChange={handleChange}
-                            placeholder='장바구니, 텀블러, 다회용기 등 여러분의 경험을 공유해주세요.(30자 이상)'
-                            className='w-[300px] h-[130px] border-4 rounded p-2'
-                        ></textarea>
-                        <div className='mt-[10px]'>
-                            <input
-                                type='file'
-                                onChange={handleFileChange}
-                                className='border-2 rounded bg-white'
-                                placeholder='이미지를 올려주세요'
-                            />
-                        </div>
-                        <p className='mt-[40px] font-bold text-[#365a31]'>
-                            리뷰는 15일 이내에 삭제할 수 있습니다.
-                        </p>
-                        <div className='w-[80px] h-[30px] bg-[#365a31] m-auto mt-[20px] flex justify-center items-center rounded-xl'>
-                            <button onClick={handleSave} className='text-white'>
-                                리뷰 등록
-                            </button>
-                        </div>
+                <div className='modal-body m-[15px]'>
+                    <textarea
+                        className='border-2 p-2 w-full h-[150px] resize-none'
+                        placeholder='리뷰를 입력하세요... (30자 이상)'
+                        value={text}
+                        onChange={handleChange}
+                    ></textarea>
+                    <input type='file' onChange={handleFileChange} />
+                    <div className='modal-footer mt-[10px] flex justify-end'>
+                        <button className='bg-[#365a31] text-white p-2 rounded-lg' onClick={handleSave}>
+                            리뷰 등록
+                        </button>
                     </div>
                 </div>
             </section>
