@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 import { Login } from "./pages/Login.jsx";
+import KakaoCallback from "./service/KakaoCallback.js";
 import Header from "./components/Header.jsx";
 import MainPage from "./components/MainPage.jsx";
 import About from "./components/About.jsx";
@@ -19,13 +20,14 @@ import ForumModal from "./components/ForumModal.jsx";
 import Footer from "./components/Footer.jsx";
 
 function App() {
-  // if (!localStorage.getItem("token")) {
-  //   return (
-  //     <Routes>
-  //       <Route path="/" element={<Login />} />
-  //     </Routes>
-  //   );
-  // }
+  if (!localStorage.getItem("token")) {
+    return (
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/auth/kakao/callback" element={<KakaoCallback />} />
+      </Routes>
+    );
+  }
   return (
     <div className="app-container">
       <Header />
