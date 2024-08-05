@@ -1,24 +1,22 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logo from './logo.png';
 
 const Header = () => {
-    const location = useLocation(); // 현재 경로를 가져옵니다.
+    const location = useLocation();
 
-    // 현재 경로에 따라 활성화 상태를 결정하는 함수
     const getLinkClassName = (path) => {
         return location.pathname === path
-            ? "bg-white text-black rounded-t-lg"
+            ? "bg-white text-black font-bold rounded-t-lg"
             : "text-white hover:bg-ghostwhite";
     };
 
     return (
         <header className='flex justify-between items-start bg-[#365a31] pt-[10px] pr-[20px] pb-0 pl-[15px] text-white w-full h-[180px] relative'>
             <div className="flex items-center space-x-2">
-                <img src={logo} alt="Logo" className="w-[200px] h-[150px]" />
+                <img src="/logo.png" alt="Logo" className="w-[227px] h-[150px]" />
             </div>
             <div className="w-full h-full">
-                <div className='flex text-lg font-bold items-start mt-[130px] space-x-2'>
+                <div className='flex text-lg items-start mt-[130px] space-x-2'>
                     <Link
                         to="/MainPage"
                         className={`w-[120px] h-[50px] flex items-center justify-center cursor-pointer ${getLinkClassName('/MainPage')}`}

@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import ReviewModal from './ReviewModal';
+import ReviewModal from './reviewModal';
 
 const ReviewPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,7 +29,6 @@ const ReviewPage = () => {
 
     return (
         <div>
-            <Header />
             <div className='m-auto items-center w-[1400px] h-[1700px] mt-[45px]'>
                 <div className='mb-[30px]'>
                     <div className='m-auto w-[300px] h-[80px] mb-[10px] rounded-xl flex flex-col justify-center items-center text-[20px] font-bold text-white bg-[#365a31]'>
@@ -83,7 +80,6 @@ const ReviewPage = () => {
                 </div>
             </div>
             {isModalOpen && <ReviewModal onClose={closeModal} onSave={handleSaveReview} />}
-            <Footer />
         </div>
     );
 };
