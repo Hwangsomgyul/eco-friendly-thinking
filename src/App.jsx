@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 
-import Header from "./components/Header.jsx"
+import { Login } from "./pages/Login.jsx";
+import Header from "./components/Header.jsx";
 import MainPage from "./components/MainPage.jsx";
-import About from './components/About.jsx';
+import About from "./components/About.jsx";
 import ReviewPage from "./components/ReviewPage.jsx";
 import Pagination from "./components/Pagination.jsx";
 import MyPage from "./components/MyPage.jsx";
@@ -18,6 +19,13 @@ import ForumModal from "./components/ForumModal.jsx";
 import Footer from "./components/Footer.jsx";
 
 function App() {
+  // if (!localStorage.getItem("token")) {
+  //   return (
+  //     <Routes>
+  //       <Route path="/" element={<Login />} />
+  //     </Routes>
+  //   );
+  // }
   return (
     <div className="app-container">
       <Header />
@@ -37,7 +45,7 @@ function App() {
           <Route path="/KakaoMap" element={<KakaoMap />} />
         </Routes>
       </div>
-      <Footer /> 
+      <Footer />
     </div>
   );
 }
