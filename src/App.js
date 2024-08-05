@@ -12,7 +12,7 @@ import MyPage from "./components/MyPage";
 import Forum from "./components/Forum";
 
 import KakaoMap from "./components/KakaoMap";
-import Star from "./components/Star";
+
 
 import Modal from "./components/Modal";
 import ReviewModal from "./components/ReviewModal";
@@ -28,8 +28,9 @@ function App() {
       <Route path="/MyPage" element={<MyPage />} />
       <Route path="/Pagination" element={<Pagination />} />
       <Route path="/Forum" element={<Forum />} />
+      <Route path="/KakaoMap" element={<KakaoMap />} />
 
-      <Route path="/Star" element={<Star />} />
+      
       <Route path="/Modal" element={<Modal />} />
       <Route path="/ReviewModal" element={<ReviewModal />} />
       <Route path="/PhotoReviewModal" element={<PhotoReviewModal />} />
