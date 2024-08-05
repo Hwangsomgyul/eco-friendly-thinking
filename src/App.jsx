@@ -17,6 +17,9 @@ import Modal from "./components/Modal.jsx";
 import ReviewModal from "./components/reviewModal.jsx";
 import PhotoReviewModal from "./components/PhotoReviewModal.jsx";
 import ForumModal from "./components/ForumModal.jsx";
+import Store from "./pages/Store.jsx";
+import EventPage from "./pages/EventPage.jsx";
+import EventOver from "./pages/EventOver.jsx";
 import Footer from "./components/Footer.jsx";
 
 function App() {
@@ -45,6 +48,9 @@ function App() {
           <Route path="/PhotoReviewModal" element={<PhotoReviewModal />} />
           <Route path="/ForumModal" element={<ForumModal />} />
           <Route path="/KakaoMap" element={<KakaoMap />} />
+          <Route path="/Store" element={<Store />} />
+          <Route path="/Store/event/*" element={<EventPage />} />
+          <Route path="/Store/over" element={<EventOver />} />
         </Routes>
       </div>
       <Footer />

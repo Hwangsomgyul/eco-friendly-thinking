@@ -16,7 +16,6 @@ const MyPage = () => {
 
   return (
     <div>
-      <Header />
       <div className="w-[1400px] mx-auto mt-[70px] justify-center ">
         <div className="flex justify-between">
           <div className="border-2 border-lightGreen w-[1040px] rounded-lg drop-shadow bg-white mb-50">
@@ -56,7 +55,6 @@ const MyPage = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
