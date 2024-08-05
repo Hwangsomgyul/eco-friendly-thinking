@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db.config');
 
-const CommunityPhoto = sequelize.define('CommunityPhoto', {
+const CommunityPost = sequelize.define('CommunityPost', {
   id: {
     type: DataTypes.BIGINT,
     primaryKey: true,
@@ -11,9 +11,13 @@ const CommunityPhoto = sequelize.define('CommunityPhoto', {
     type: DataTypes.BIGINT,
     allowNull: false
   },
+  content: {
+    type: DataTypes.TEXT,
+    allowNull: false
+  },
   photo_url: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true
   }
 }, {
   timestamps: true,
@@ -21,4 +25,4 @@ const CommunityPhoto = sequelize.define('CommunityPhoto', {
   underscored: true
 });
 
-module.exports = CommunityPhoto;
+module.exports = CommunityPost;
