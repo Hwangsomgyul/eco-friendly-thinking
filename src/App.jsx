@@ -12,7 +12,7 @@ import Forum from './components/Forum.jsx';
 import KakaoMap from './components/KakaoMap.jsx';
 import Star from './components/Star.jsx';
 import Modal from './components/Modal.jsx';
-import ReviewModal from './components/reviewModal.jsx';
+import ReviewModal from './components/ReviewModal.jsx';
 import PhotoReviewModal from './components/PhotoReviewModal.jsx';
 import ForumModal from './components/ForumModal.jsx';
 import Footer from './components/Footer.jsx';
@@ -23,23 +23,23 @@ function App() {
   useKakaoLoader();
 
   return (
-    <div className='app-container'>
+    <div className="app-container">
       <Header />
-      <div className='content'>
+      <div className="content">
         <Routes>
-          <Route path='/MainPage' element={<MainPage />} />
-          <Route path='/About' element={<About />} />
-          <Route path='/ReviewPage' element={<ReviewPage />} />
-          <Route path='/MyPage' element={<MyPage />} />
-          <Route path='/Pagination' element={<Pagination />} />
-          <Route path='/Forum' element={<Forum />} />
-          <Route path='/Star' element={<Star />} />
-          <Route path='/Modal' element={<Modal />} />
-          <Route path='/ReviewModal' element={<ReviewModal />} />
-          <Route path='/PhotoReviewModal' element={<PhotoReviewModal />} />
-          <Route path='/ForumModal' element={<ForumModal />} />
-          <Route path='/KakaoMap' element={<KakaoMap />} />
-          <Route path='/new-kakao' element={<NewKakao />} />
+          <Route path="/MainPage" element={<MainPage />} />
+          <Route path="/About" element={<About />} />
+          <Route path="/ReviewPage" element={<ReviewPage />} />
+          <Route path="/MyPage" element={<MyPage />} />
+          <Route path="/Pagination" element={<Pagination />} />
+          <Route path="/Forum" element={<Forum />} />
+          <Route path="/Star" element={<Star />} />
+          <Route path="/Modal" element={<Modal />} />
+          <Route path="/ReviewModal" element={<ReviewModal />} />
+          <Route path="/PhotoReviewModal" element={<PhotoReviewModal />} />
+          <Route path="/ForumModal" element={<ForumModal />} />
+          <Route path="/KakaoMap" element={<KakaoMap />} />
+          <Route path="/new-kakao" element={<NewKakao />} />
         </Routes>
       </div>
       <Footer />

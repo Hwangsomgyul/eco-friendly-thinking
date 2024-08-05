@@ -3,6 +3,7 @@ import { useState } from 'react';
 import SearchField from '../components/map/search/SearchField';
 import KakaoMap from '../components/map/KakaoMap';
 import AddressList from '../components/map/search/AddressList';
+import ReviewModal from '../components/ReviewModal';
 
 export default function NewKakao() {
   const [search, setSearch] = useState('');
@@ -68,6 +69,7 @@ export default function NewKakao() {
         <AddressList list={addresses} />
       </div>
       <KakaoMap markers={markers} onCreateMap={handleCreateMap} />
+      <ReviewModal />
     </section>
   );
 }
