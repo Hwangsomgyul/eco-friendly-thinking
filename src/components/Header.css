@@ -1,67 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
+
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #365a31;
-    padding: 10px 20px;
-    color: white;
-  }
-  
-  .logo {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  .items {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
-  
-  .menu-item {
-    display: flex;
-    align-items: center;
-    position: relative;
-  }
-  
-  .menu-item > span {
-    margin-right: 20px;
-    cursor: pointer;
-  }
-  
-  .introduce-items {
-    display: none; /* 기본적으로 숨김 */
-    position: absolute;
-    background-color: #365a31;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    top: 30px;
-    left: 0;
-  }
-  
-  .menu-item .introduce:hover + .introduce-items {
-    display: block; /* 소개에 호버할 때 보이도록 */
-  }
-  
-  .intro-items {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .intro-items > span {
-    margin-bottom: 10px;
-    cursor: pointer;
-  }
-  
-  .user-item {
-    display: flex;
-    align-items: center;
-  }
-  
-  .user-item > span {
-    margin-left: 15px;
-    cursor: pointer;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #365a31;
+  font-family: 'Poppins', Arial, sans-serif;
+  padding: 10px 0px;
+  margin: 0;
+  color: white;
+}
+
+html[lang="ko"] .header {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.menu-item > span {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.menu-item.active span {
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.introduce-items {
+  display: none; /* 기본적으로 숨김 */
+  position: absolute;
+  background-color: #365a31;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  top: 30px;
+  left: 0;
+}
+
+.menu-item .introduce:hover + .introduce-items {
+  display: block; /* 소개에 호버할 때 보이도록 */
+}
+
+.intro-items {
+  display: flex;
+  flex-direction: column;
+}
+
+.intro-items > span {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.user-item {
+  display: flex;
+  align-items: center;
+}
+
+.user-item > span {
+  margin-left: 15px;
+  cursor: pointer;
+}
+

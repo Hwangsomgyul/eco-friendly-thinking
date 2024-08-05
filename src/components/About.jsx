@@ -1,18 +1,15 @@
 import React from 'react';
-import Header from './Header'
-import Footer from './Footer';
 
 const About = () => {
 
     return (
         <div>
-            <Header />
                 <div className='m-auto w-[1400px] h-[500px] mt-[100px]'>
                     <div className='text-[30px] text-bold mb-[80px]'>소개글</div>
                     <div className='text-[18px]'>이 사이트의 서비스는 분리수거 및 다회용기 사용을 동참하도록
-                    유도하는 캠폐인으로 서울시에 위치한 많은 비건, 카페 등 다회용기 사용을
+                    유도하는 캠페인으로, 서울시에 위치한 많은 비건, 카페 등 다회용기 사용을
                     적극적으로 하고있는 업체를 대상으로 많은 유저들이 사용을 적극 권장하도록
-                    하기 위한 서비스입니다
+                    하기 위한 서비스입니다.
                     서울시에 따른 지난 몇년간의 폐기물 등 환경에 미치는 영향 및 그에 준하는 
                     데이터를 제시함으로 코로나를 기준으로 폭발적으로 증가한 1회용기 등 무분별한
                     사용의 남용을 막고자 이를 해결 및 줄여나가기 위해 서비스를 제시하고자 함
@@ -33,7 +30,6 @@ const About = () => {
                         </div>
                     </div>
                 </div>
-            <Footer />
         </div>
     )
 
