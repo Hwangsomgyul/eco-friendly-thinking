@@ -36,13 +36,9 @@ const Modal = ({ place_name, road_address_name, onClose, onOpenReviewModal }) =>
               </p>
               <p className="flex justify-center">{road_address_name}</p>
               <div className="flex justify-center gap-[5px] text-[20px]">
-                <Star totalStars={5} />
+                
               </div>
-              <div className="flex items-end justify-end">
-                {/* <Link to="/ReviewPage" className="rounded-xl bg-[#D6EFD8] p-2 hover:text-white hover:bg-[#1A5319]">
-                  리뷰하러 가기
-                </Link> */}
-              </div>
+              
               <div className="mt-4 border-t border-[#365a31]"></div>
             </div>
           </div>

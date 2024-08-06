@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import './mainPage.css';
+import React, { useState } from 'react';
+import SearchField from './map/search/SearchField';
+import KakaoMap from './map/KakaoMap';
+import AddressList from './map/search/AddressList';
+import Modal from './Modal';
+import ReviewModal from './ReviewModal'; // 리뷰 모달 컴포넌트 import
 import { Link } from 'react-router-dom';
-
 import Pagination from './Pagination';
 
 import image1 from '../images/image1.jpg';
@@ -15,132 +18,81 @@ import image8 from '../images/image8.jpg';
 import image9 from '../images/image9.jpg';
 
 const MainPage = () => {
-  const [searchTerm, setSearchTerm] = useState(''); // 검색어 상태를 관리
-  const [map, setMap] = useState(null); // 지도 관리
-  const [markers, setMarkers] = useState([]); // 지도에 표시된 마커 관리
-  const [kakaoLoaded, setKakaoLoaded] = useState(false); // 카카오맵 sdk
-  const [places, setPlaces] = useState([]); // 검색 결과 저장
+  const [open, setOpen] = useState(false);
+  const [reviewModalOpen, setReviewModalOpen] = useState(false); // 리뷰 모달 상태 추가
 
-  useEffect(() => {
-    const loadKakaoMap = () => {
-      const script = document.createElement('script');
-      script.src =
-        'https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=df5c8b8d6500a3ce6d4151f4e4900ceb';
-      script.async = true;
+  const [search, setSearch] = useState(''); // 검색어 상태
+  const [map, setMap] = useState(null);
+  const [addresses, setAddresses] = useState([]); // 검색 결과 상태
+  const [markers, setMarkers] = useState([]);
+  const [selectedMarker, setSelectedMarker] = useState(null);
 
-      script.onload = () => {
-        console.log('Kakao Maps SDK loaded');
-        if (window.kakao && window.kakao.maps) {
-          window.kakao.maps.load(() => {
-            console.log('Kakao Maps loaded');
-
-            const mapContainer = document.getElementById('map');
-            if (mapContainer) {
-              const options = {
-                center: new window.kakao.maps.LatLng(
-                  37.56000302825312,
-                  126.97540593203321
-                ),
-                level: 3,
-              };
-              const mapInstance = new window.kakao.maps.Map(
-                mapContainer,
-                options
-              );
-              setMap(mapInstance);
-              setKakaoLoaded(true);
-
-              window.kakao.maps.event.addListener(
-                mapInstance,
-                'click',
-                (mouseEvent) => {
-                  const latlng = mouseEvent.latLng;
-
-                  const marker = new window.kakao.maps.Marker({
-                    map: mapInstance,
-                    position: latlng,
-                  });
-
-                  const infowindow = new window.kakao.maps.InfoWindow({
-                    content: `<div style="padding:5px;font-size:12px;">클릭한 위치입니다</div>`,
-                  });
-
-                  window.kakao.maps.event.addListener(marker, 'click', () => {
-                    infowindow.open(mapInstance, marker);
-                  });
-
-                  markers.forEach((m) => m.setMap(null));
-                  setMarkers([marker]);
-                }
-              );
-            } else {
-              console.error('Map container not found');
-            }
-          });
-        } else {
-          console.error('Kakao Maps not available');
-        }
-      };
-
-      script.onerror = (error) => {
-        console.error('Error loading script:', error);
-      };
-
-      document.head.appendChild(script);
-    };
-
-    loadKakaoMap();
-  }, []);
-
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
+  const handleOpenModal = () => {
+    setOpen(true);
   };
 
-  const handleSearchSubmit = (event) => {
-    event.preventDefault();
-    if (!searchTerm.trim() || !kakaoLoaded) return;
+  const handleCloseModal = () => {
+    setOpen(false);
+  };
 
-    if (!window.kakao || !window.kakao.maps || !window.kakao.maps.services) {
-      console.error('Kakao Maps Services not available');
+  const handleOpenReviewModal = () => setReviewModalOpen(true); // 리뷰 모달 열기 함수 추가
+  const handleCloseReviewModal = () => setReviewModalOpen(false); // 리뷰 모달 닫기 함수 추가
+
+  const handleCreateMap = (map) => {
+    setMap(map);
+  };
+
+  const handleChange = (e) => { //
+    setSearch(e.target.value);
+  };
+
+  const handleSearch = () => { //
+    if (!search) {
       return;
     }
 
-    const ps = new window.kakao.maps.services.Places();
-    ps.keywordSearch(searchTerm, (data, status) => {
-      if (status === window.kakao.maps.services.Status.OK) {
-        markers.forEach((marker) => marker.setMap(null));
-        setMarkers([]);
+    // eslint-disable-next-line no-undef
+    const ps = new window.kakao.maps.services.Places(); //
 
-        const newMarkers = data.map((place) => {
-          const marker = new window.kakao.maps.Marker({
-            map: map,
-            position: new window.kakao.maps.LatLng(place.y, place.x),
-          });
+    ps.keywordSearch(search, (data, status, _pagination) => { //
+      if (status !== window.kakao.maps.services.Status.OK) {
+        return;
+      } //
 
-          window.kakao.maps.event.addListener(marker, 'click', () => {
-            const infowindow = new window.kakao.maps.InfoWindow({
-              content: `<div style="padding:5px;font-size:12px;">${place.place_name}</div>`,
-            });
-            infowindow.open(map, marker);
-          });
+      const bounds = new window.kakao.maps.LatLngBounds();
+      const markers = [];
 
-          return marker;
+      for (let i = 0; i < data.length; i++) {
+        markers.push({
+          position: {
+            lat: data[i].y,
+            lng: data[i].x,
+          },
+          content: data[i].place_name,
         });
-
-        setMarkers(newMarkers);
-
-        const bounds = new window.kakao.maps.LatLngBounds();
-        data.forEach((place) => {
-          bounds.extend(new window.kakao.maps.LatLng(place.y, place.x));
-        });
-        map.setBounds(bounds);
-
-        setPlaces(data);
-      } else {
-        console.error('Search failed:', status);
+        bounds.extend(new window.kakao.maps.LatLng(data[i].y, data[i].x));
       }
+
+      setMarkers(markers);
+      setAddresses(data); //
+
+      map.setBounds(bounds);
     });
   };
+
+  const handleClickAddress = (marker) => {
+    setSelectedMarker(marker);
+    handleOpenModal();
+  };
+
+  const handleSelectMarker = (marker) => {
+    setSelectedMarker(marker);
+  };
+
+  const handleSaveReview = (review) => {
+    console.log("Review saved:", review);
+    setReviewModalOpen(false) // 리뷰 모달 닫기
+  }
 
   return (
     <div>
@@ -161,53 +113,31 @@ const MainPage = () => {
           </div>
         </div>
 
-        <div className='flex relative w-full h-[780px] justify-end'>
-          <div
-            id='map'
-            className='w-[980px] h-[780px] absolute rounded-xl'
-          ></div>
-
-          <div
-            id='menu_wrap'
-            className='w-[400px] h-[780px] border-2 border-[#365a31] gap-[10px] absolute top-0 left-0 p-4'
-          >
-            <form
-              onSubmit={handleSearchSubmit}
-              className='flex flex-col gap-3 mb-4'
-            >
-              <input
-                type='text'
-                value={searchTerm}
-                onChange={handleSearchChange}
-                placeholder='검색어를 입력하세요'
-                className='border-2 rounded p-2 w-full h-[40px]'
-              />
-              <button
-                type='submit'
-                className='bg-[#365a31] text-white py-2 rounded w-full h-[40px]'
-              >
-                검색하기
-              </button>
-            </form>
-
-            {/* 검색 결과 목록 */}
-            {places.length > 0 && (
-              <div className='search-results max-h-[600px] overflow-y-auto bg-white border-2 border-[#365a31] rounded-md p-2'>
-                <h2 className='text-lg font-bold mb-2'>검색 결과</h2>
-                <ul className='list-none'>
-                  {places.map((place) => (
-                    <li key={place.id} className='border-b py-2'>
-                      <p className='font-semibold'>{place.place_name}</p>
-                      <p className='text-sm text-gray-600'>
-                        {place.address_name}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+        <section className="flex w-full h-[780px] justify-end gap-8 p-4">
+          <div className="relative border-2 border-[#365a31] gap-[10px] p-4 h-[780px] w-[400px]">
+            <SearchField
+              search={search}
+              onChange={handleChange}
+              onSearch={handleSearch}
+              showTooltip={true}
+            />
+            <AddressList list={addresses} onClickAddress={handleClickAddress} />
           </div>
-        </div>
+          {open && (
+            <Modal
+              place_name={selectedMarker.place_name}
+              road_address_name={selectedMarker.road_address_name}
+              onClose={handleCloseModal}
+              onOpenReviewModal={handleOpenReviewModal} // 모달에서 리뷰 모달 열기 함수 전달
+            />
+          )}
+          <KakaoMap
+            selectedMarker={selectedMarker}
+            markers={markers}
+            onSelectMarker={handleSelectMarker}
+            onCreateMap={handleCreateMap}
+          />
+        </section>
 
         <div className='flex justify-center items-center mt-[40px]'>
           <Pagination />
@@ -318,6 +248,15 @@ const MainPage = () => {
           </div>
         </div>
       </div>
+
+      {reviewModalOpen && (
+        <ReviewModal
+          place_name={selectedMarker?.place_name} // 업체명 전달
+          road_address_name={selectedMarker?.road_address_name} // 도로명 주소 전달
+          onClose={handleCloseReviewModal} // 리뷰 모달 닫기 함수 전달
+          onSave={handleSaveReview}
+        />
+      )}
     </div>
   );
 };

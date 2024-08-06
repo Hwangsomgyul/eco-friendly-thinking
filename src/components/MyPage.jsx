@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Header from './Header';
 import Footer from './Footer';
 
@@ -6,6 +6,8 @@ import image1 from '../images/image1.jpg';
 import edit from '../images/edit.svg';
 
 const MyPage = () => {
+
+    
     return (
         <div>
                 <div className='w-[1400px] h-[1000px] mx-auto mt-[70px] justify-center'>
@@ -91,7 +93,7 @@ const MyPage = () => {
                                 <img src={image1} alt="image 1" className='w-[250px] h-[250px] mt-[10px] rounded-[125px]'/>
                                 <div className='flex flex-col items-center mt-[10px]'>
                                     <div className='flex items-center justify-center space-x-[30px]'>
-                                        <p className='text-[25px]'>닉네임</p>
+                                        <p type='text' className='text-[25px]'>닉네임</p>
                                         <img src={edit} alt="edit image" className='w-[30px] h-[30px] cursor-pointer'/>
                                     </div>
                                     <div className='flex flex-col items-center mt-[20px]'>

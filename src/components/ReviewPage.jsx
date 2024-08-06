@@ -1,35 +1,54 @@
 import React, { useState } from 'react';
 import ReviewModal from './ReviewModal';
+import SearchField from './map/search/SearchField';
+import AddressList from './map/search/AddressList';
 
 const ReviewPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [addr, setAddr] = useState('스타벅스 럭키비키점');
+  const [address, setAddress] = useState([]); // 초기값을 빈 배열로 설정
   const [search, setSearch] = useState('');
   const [reviews, setReviews] = useState([]);
+  const [selectedPlace, setSelectedPlace] = useState(null);
 
-//  const handleChange = (e) => { //
-//   setSearch(e.target.value);
-//  };
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
 
-//  const handleSearch = () => { //
-//   if(!search) {
-//     return;
-//   }
-//  }
+  const handleSearch = () => {
+    if (!search) {
+      return;
+    }
 
-//       const ps = new window.kakao.maps.services.Places(); //
+    const ps = new window.kakao.maps.services.Places();
 
-//       ps.keywordSearch(search, (data, status, _pagination) => { //
-//         if (status !== window.kakao.maps.services.Status.OK) {
-//           return;
-//         }
+    ps.keywordSearch(search, (data, status, _pagination) => {
+      if (status !== window.kakao.maps.services.Status.OK) {
+        return;
+      }
 
-//         setAddresses(data); //
-//       });
+      // 데이터가 배열인지 확인하고 설정
+      if (Array.isArray(data)) {
+        setAddress(data);
+      } else {
+        console.error('Search result should be an array');
+        setAddress([]);
+      }
+    });
+  };
 
 
+  // 목록 클릭 시 모달을 열지 않고 상호명과 주소만 업데이트
+  const handleClickAddress = (place) => {
+    setSelectedPlace(place);
+    // setIsModalOpen(true); // 모달은 여기서 열지 않음
+  };
 
+  // 주소 없이 클릭시 주소부터 먼저 검색하도록 유도
   const openModal = () => {
+    if (!search) {
+      alert('주소를 검색해 주세요');
+      return;
+    }
     setIsModalOpen(true);
   };
 
@@ -37,74 +56,49 @@ const ReviewPage = () => {
     setIsModalOpen(false);
   };
 
-  const handleChangeSearch = (e) => {
-    setSearch(e.target.value);
-  };
-
-  const handleSearch = () => {
-    setAddr(search);
-  };
-
   const handleSaveReview = (review) => {
     setReviews([review, ...reviews]);
+    setAddress([]); // 리뷰 저장 후 주소 목록 초기화
+    closeModal();
   };
 
   return (
     <div>
-      <div className="m-auto mt-[45px] h-[1700px] w-[1400px] items-center">
+      <div className="relative m-auto mt-[45px] h-[1700px] w-[1400px] items-center">
         <div className="mb-[30px]">
-          <div className="m-auto mb-[10px] flex h-[80px] w-[300px] flex-col items-center justify-center rounded-xl bg-[#365a31] text-[20px] font-bold text-white">
-            {addr}
+          <div className="relative m-auto mb-[10px] flex h-[80px] w-[300px] flex-col items-center justify-center rounded-xl bg-[#365a31] text-[20px] font-bold text-white">
+            {/* 현재 주소의 목록을 보여주기 */}
+            <div className="text-[25px] font-bold">{selectedPlace ? selectedPlace.place_name : '상호명을 검색하세요'}<br/></div>
+            <div className="text-[20px] font-normal">{selectedPlace ? selectedPlace.road_address_name : ''}</div>
           </div>
           <div>
-            <div className="flex items-center justify-center">
+            <div className="flex relative items-center justify-end">
               <div
                 onClick={openModal}
-                className="m-auto ml-[550px] flex h-[45px] w-[300px] cursor-pointer items-center justify-center rounded-xl bg-[#D6EFD8] font-bold text-white hover:bg-[#508D4E]"
+                className="m-auto ml-[550px] mb-[725px] flex h-[40px] w-[300px] cursor-pointer items-center justify-center rounded-xl bg-[#D6EFD8] font-bold text-white hover:bg-[#508D4E]"
               >
                 새로운 리뷰를 등록하기 +
               </div>
 
-
-              <div className="flex gap-[10px]">
-                <input
-                  type="text"
-                  value={search}
-                  onChange={handleChangeSearch}
-                  className="rounded-xl border-2 p-[10px]"
-                  placeholder="검색어를 입력하세요"
-                />
-                <button
-                  type="button"
-                  onClick={handleSearch}
-                  className="h-[45px] w-[60px] cursor-pointer rounded-xl bg-[#365a31] text-white hover:bg-[#508D4E]"
-                >
-                  검색
-                </button>
-              </div>
-
-              {/* // <section className="flex w-full h-[780px] justify-end gap-8">
-                <div className="relative border-2 border-[#365a31] gap-[10px] p-4 h-[780px] w-[400px]">
+              <section className="flex w-[350px] h-[780px] justify-end gap-8">
+                <div className="border-[#365a31] gap-[10px] p-4 h-[80px] w-[350px]">
                   <SearchField
                     search={search}
                     onChange={handleChange}
                     onSearch={handleSearch}
+                    showTooltip={false}
                   />
-                  <AddressList list={addresses} onClickAddress={handleClickAddress} />
+                  <AddressList list={address} onClickAddress={handleClickAddress} />
                 </div>
-
-              </section>*/ }
-
-
-              
+              </section>
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-4 gap-[30px]">
+        <div className="absolute top-[300px] grid grid-cols-4 gap-[30px]"> {/* 저장된 데이터 컨테이너의 top 값을 조정 */}
           {reviews.map((review, index) => (
-            <div key={index} className="w-full">
+            <div key={index} className="w-full border-2">
               <img
-                src={review.imageSrc || 'default-image-url'} // 기본 이미지 URL 설정
+                src={review.imageSrc || 'default-image-url'}
                 alt=""
                 className="h-[250px] w-full object-cover"
               />
@@ -119,10 +113,9 @@ const ReviewPage = () => {
         </div>
       </div>
       {isModalOpen && (
-        // FIXME: place_name, road_address_name 내용을 전달해 주어야 함
         <ReviewModal
-          place_name=""
-          road_address_name=""
+          place_name={selectedPlace?.place_name || ''}
+          road_address_name={selectedPlace?.road_address_name || ''}
           onClose={closeModal}
           onSave={handleSaveReview}
         />

@@ -1,6 +1,6 @@
 
 
-export default function AddressList({ list, onClickAddress }) {
+export default function AddressList({ list, onClickAddress, showModal = true }) {
   if (!list.length) {
     return null;
   }
@@ -9,6 +9,10 @@ export default function AddressList({ list, onClickAddress }) {
     ({ place_name, road_address_name }) =>
     () => {
       onClickAddress({ place_name, road_address_name });
+        // 모달이 열려야 하는 페이지에서만 모달 열기
+      if(showModal) {
+        // 모달 열기 관련 로직은 Reviewpage와 MainPage에서 다루기에 빈 상태로 둔다
+      }
     };
 
     

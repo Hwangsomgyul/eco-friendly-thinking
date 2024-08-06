@@ -2,6 +2,9 @@
 import React, { useState } from 'react';
 import Star from './Star';
 
+import SearchField from './map/search/SearchField';
+import AddressList from './map/search/AddressList';
+
 const ReviewModal = ({ place_name, road_address_name, onClose, onSave }) => {
   const [text, setText] = useState('');
   const [rating, setRating] = useState(0);
@@ -11,11 +14,17 @@ const ReviewModal = ({ place_name, road_address_name, onClose, onSave }) => {
     setText(e.target.value);
   };
 
+
+
   const handleSave = () => {
     if (text.length < 30) {
       alert('리뷰는 30자 이상이어야 합니다.');
       return;
+    } else {
+      alert('리뷰가 저장되었어요');
     }
+   
+    
 
     // 생성된 Blob URL을 상태에 저장
     const imageSrc = imageFile ? URL.createObjectURL(imageFile) : '';
