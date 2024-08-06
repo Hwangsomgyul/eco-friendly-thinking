@@ -23,14 +23,17 @@ import EventOver from "./pages/EventOver.jsx";
 import Footer from "./components/Footer.jsx";
 
 function App() {
-  // if (!localStorage.getItem("token")) {
-  //   return (
-  //     <Routes>
-  //       <Route path="/" element={<Login />} />
-  //       <Route path="/auth/kakao/callback" element={<KakaoCallback />} />
-  //     </Routes>
-  //   );
-  // }
+  if (!localStorage.getItem("token")) {
+    return (
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/auth/kakao/callback" element={<KakaoCallback />} />
+
+        {/* 위에 없는 경로일 경우 올바르지 못한 접근 */}
+        {/* <Route path="/*" element={<Unauthorized />} />  */}
+      </Routes>
+    );
+  }
   return (
     <div className="app-container">
       <Header />
@@ -51,6 +54,9 @@ function App() {
           <Route path="/Store" element={<Store />} />
           <Route path="/Store/event/*" element={<EventPage />} />
           <Route path="/Store/over" element={<EventOver />} />
+
+          {/* 위에 없는 경로일 경우 찾을 수 없는 페이지 */}
+          {/* <Route path="/*" element={<NotFound />} />  */}
         </Routes>
       </div>
       <Footer />
