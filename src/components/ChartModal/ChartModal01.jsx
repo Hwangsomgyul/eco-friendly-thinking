@@ -1,27 +1,26 @@
 import React from "react";
-import { WasteWithPop } from "../../asserts/Chart/WasteWithPop";
+import { WasteYearly } from "../../asserts/Chart/WasteYearly";
 import "./ChartModal.css";
 
 export const ChartModal01 = ({ isOpen, onClose }) => {
-  // const [isOpen, setIsOpen] = useState(false);
-
-  // const closeModal = () => setIsOpen(false);
 
   return (
-    <aside className={`bg-blackGreen ${isOpen ? "on" : ""}`}>
+    <aside className={`bg-blackGreen animate-fadeOn`}>
       <div className="txt">
-        <h1>01</h1>
-        <span className="hover:text-white">CLOSE</span>
+        <h1 className="">01</h1>
+        <span className="hover:text-white" onClick={onClose}>
+          CLOSE
+        </span>
       </div>
       <figure>
-        <WasteWithPop />
+        <WasteYearly />
         <div>
           <p>
             서울시 생활폐기물은 최근 22년동안 매립양은 줄고, 재활용량과 소각량이
             상대적으로 증가했습니다.
           </p>
           <p>서울시 생활폐기물 관련 재활용률은 60%대 입니다.</p>
-          <p>더 높은 재활용률을 위해서 어떤 일을 할 수 있을까요?</p>
+          <p>차트에 마우스 커서를 올려 수치를 확인해보세요!</p>
         </div>
       </figure>
     </aside>

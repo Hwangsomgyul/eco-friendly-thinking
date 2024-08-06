@@ -150,6 +150,9 @@ const options = {
       display: true,
       labels: {
         color: "#FFFFFF", // 범례 폰트 색상 흰색으로 설정
+        font: {
+          size: 10, // 폰트 크기
+        },
       },
     },
   },

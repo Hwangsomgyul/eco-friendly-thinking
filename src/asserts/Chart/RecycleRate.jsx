@@ -38,8 +38,8 @@ const labels = years; //라벨 넣기
 
 // 지역구에 따라 변경되는 데이터들
 
-const rate_total = [22.7, 27];
-const rate_pla = [13, 16.4];
+const rate_EU = [22.7, 27];
+const rate_korea = [36, 40];
 
 // 동적 축 일치 로직
 // 축의 최소, 최대를 동적으로 넣기 위해서 최대 최소값 추출 +- 10000하기
@@ -52,14 +52,14 @@ const datas = {
   datasets: [
     {
       type: "bar",
-      label: "전체 플라스틱의 물질 재활용률(%)", // 범례표시
-      data: rate_total,
+      label: "열적 재활용률(%, 음식 외)", // 범례표시
+      data: rate_korea,
       backgroundColor: "#ECAB7C",
     },
     {
       type: "bar",
-      label: "일회용 플라스틱의 물질 재활용률(%)",
-      data: rate_pla,
+      label: "물질 재활용률(%, 전체 플라스틱)",
+      data: rate_EU,
       backgroundColor: "#F4E285",
     },
   ],
@@ -77,7 +77,7 @@ const options = {
     },
     title: {
       display: true, // 제목 표시 여부
-      text: "EU 기준 플라스틱 재활용률(%)", // 차트 제목
+      text: "열적 재활용률과 물질 재활용률의 비교", // 차트 제목
       font: {
         size: 20, // 폰트 크기
       },
