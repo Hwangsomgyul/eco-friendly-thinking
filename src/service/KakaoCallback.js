@@ -16,7 +16,8 @@ const KakaoCallback = () => {
           const { token, user } = response.data;
           localStorage.setItem("token", token);
           localStorage.setItem("user", JSON.stringify(user));
-          navigate("/MainPage");
+          //이동
+          window.location.href = response.url;
         })
         .catch((error) => {
           console.error("카카오 로그인 에러:", error);
