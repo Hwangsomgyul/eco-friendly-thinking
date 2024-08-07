@@ -7,7 +7,7 @@ const Footer = () => {
             <div className="footer-content">
                 <div className="footer-company">
                     <p><span className="bold">㈜Lucky-Vicky</span></p>
-                    <p><span className="bold">대표이사:</span>이현호</p>
+                    <p><span className="bold">대표이사: </span>이현호</p>
                     <p><span className="bold">주소: </span>나영민지시 우현구 민관로 433, 솜귤 6층
                     <p></p><span className="bold">사업자 등록 번호:</span> 144-81-00000</p>
                     <br></br>
