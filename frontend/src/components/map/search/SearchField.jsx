@@ -1,18 +1,22 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
-export default function SearchField({ search, onChange, onSearch, showTooltip }) {
-
+export default function SearchField({
+  search,
+  onChange,
+  onSearch,
+  showTooltip,
+}) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="p-8 flex w-400px gap-[15px]">
+    <div className="w-400px flex gap-[15px] p-8">
       <input
-        className="flex-1 border-2 rounded p-2 w-[270px] h-[40px]"
+        className="h-[40px] w-[270px] flex-1 rounded border-2 p-2"
         value={search}
         onChange={onChange}
       />
       <button
-        className="bg-[#365a31] text-white py-2 rounded w-[70px] h-[40px]"
+        className="h-[40px] w-[70px] rounded bg-[#365a31] py-2 text-white"
         onClick={onSearch}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -20,11 +24,13 @@ export default function SearchField({ search, onChange, onSearch, showTooltip })
         검색
       </button>
       {showTooltip && (
-      <p className={`ml-[150px] mt-[50px] absolute w-[200px] p-[8px] left-0 rounded-[8px] bg-[#333] text-center text-white text-[14px] ${isHovered ? 'block' : 'hidden'} arrow_box`}>
-        리뷰쓰고 20point!!
-      </p>
+        <p
+          className={`absolute left-0 ml-[150px] mt-[50px] w-[200px] rounded-[8px] bg-[#333] p-[8px] text-center text-[14px] text-white ${isHovered ? 'block' : 'hidden'} arrow_box`}
+        >
+          리뷰쓰고 20point!!
+        </p>
       )}
-      <style jsx>{`
+      <style>{`
         .arrow_box::after {
           position: absolute;
           bottom: 100%;
