@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="ko" class="w-full h-full">
+<!doctype html>
+<html lang="ko" class="h-full w-full">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
@@ -36,22 +36,13 @@
       content="connect-src 'self' http://dapi.kakao.com http://*.daumcdn.net;"
     />
 
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self' 'unsafe-inline' https://dapi.kakao.com http://*.daumcdn.net; connect-src 'self' http://localhost:5000 https://dapi.kakao.com http://*.daumcdn.net;"
-    />
-    <meta
-      http-equiv="X-Content-Security-Policy"
-      content="default-src 'self' 'unsafe-inline' https://dapi.kakao.com http://*.daumcdn.net; connect-src 'self' http://localhost:5000 https://dapi.kakao.com http://*.daumcdn.net;"
-    />
-
     <script
       type="text/javascript"
       src="https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=df5c8b8d6500a3ce6d4151f4e4900ceb&libraries=services,clusterer,drawing"
     ></script>
   </head>
-  <body class="w-full h-full">
+  <body class="h-full w-full">
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root" class="w-full h-full"></div>
+    <div id="root" class="h-full w-full"></div>
   </body>
 </html>
