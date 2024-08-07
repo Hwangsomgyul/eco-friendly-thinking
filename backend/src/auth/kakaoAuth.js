@@ -123,7 +123,7 @@ const kakaoAuth = {
         });
         // 리디렉션 코드 수정
         res.redirect(
-          `http://localhost:3000/MainPage#access_token=${access_token}#id_token=${id_token}`
+          `http://localhost:3000/MainPage#access_token=${access_token}&user_id=${newUser.id}`
         );
       }
     } catch (error) {
