@@ -10,6 +10,7 @@ import ReviewPage from './components/ReviewPage.jsx';
 
 import MyPage from './components/MyPage.jsx';
 import Forum from './components/Forum.jsx';
+// import KakaoMap from './components/KakaoMap.jsx';
 
 import Store from './pages/Store.jsx';
 import EventPage from './pages/EventPage.jsx';
@@ -42,12 +43,12 @@ function App() {
       </Routes>
     );
   }
-
   return (
     <div className="app-container">
       <Header />
       <div className="content">
         <Routes>
+          <Route path="/" element={<MainPage />} />
           <Route path="/MainPage" element={<MainPage />} />
           <Route path="/About" element={<About />} />
           <Route path="/ReviewPage" element={<ReviewPage />} />
