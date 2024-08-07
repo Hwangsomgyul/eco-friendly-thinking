@@ -141,15 +141,16 @@ const Forum = () => {
           </div>
 
           <div>
-            <div className='flex gap-[10px] justify-between'>
-              <p className="text-[22px]">무단 투기 신고 지역</p>
-              <div className="region-selector mt-4">
-                <select className="w-full md:w-auto border border-gray-300 p-2 rounded" value={selectedGu} onChange={(e) => setSelectedGu(e.target.value)}>
-                  {guList.map(gu => <option key={gu} value={gu}>{gu}</option>)}
-                </select>
-              </div>
-            </div>
-            <div className='flex mt-[20px] justify-between'>
+          <div className='flex items-center gap-[10px]'>
+  <p className="text-[22px] font-bold">무단 투기 신고 지역</p>
+  <div className="region-selector flex-grow">
+    <select className="w-[250px] border border-gray-300 p-2 rounded" value={selectedGu} onChange={(e) => setSelectedGu(e.target.value)}>
+      {guList.map(gu => <option key={gu} value={gu}>{gu}</option>)}
+    </select>
+  </div>
+</div>
+
+            <div className='flex mt-[15px] justify-between'>
               <p>동일한 내용의 게시글이 이미 등록되어 있나요?</p>
               <div className='relative flex item-center'>
                 <img src={clicked ? boxOk : boxNotOk} alt="box image" 
@@ -164,7 +165,7 @@ const Forum = () => {
               </div>
             </div>
             <div className='mt-[15px] flex gap-[10px]'>
-            <div className='bg-[#D6EFD8] w-[230px] h-[220px] flex justify-center items-center text-[20px] cursor-pointer' onClick={() => document.getElementById('fileUpload').click()}>
+            <div className='bg-[#D6EFD8] w-[230px] h-[270px] flex justify-center items-center text-[20px] cursor-pointer' onClick={() => document.getElementById('fileUpload').click()}>
   image upload
   <input
     type="file"
@@ -175,15 +176,15 @@ const Forum = () => {
 </div>
 
               <textarea
-                className="w-full h-320px p-2 border border-gray-300 rounded mb-4"
+                className="w-full h-360px p-2 border border-gray-300 rounded"
                 placeholder="구체적인 상황과 위치를 첨부한 사진에 대해 설명해 주세요."
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>
             </div>
             <div className='flex justify-end'>
-              <div className='relative flex items-center'>
-                <div className='flex justify-center w-[80px] h-[40px] rounded border-2 bg-[#365a31] mt-[5px] cursor-pointer hover:bg-[#508D4E]' onClick={handlePostSubmit}>
+              <div className='relative flex items-center mt-2'>
+                <div className='flex justify-center w-[80px] h-[40px] border-[#365a31] rounded border-2 bg-[#365a31] mt-[5px] cursor-pointer hover:bg-[#508D4E]' onClick={handlePostSubmit}>
                   <button className='flex justify-center items-center text-white'>등록</button>
                 </div>
                 <p className={`absolute left-full ml-4 transition-opacity duration-300 ${hover ? 'opacity-100' : 'opacity-0'}`}

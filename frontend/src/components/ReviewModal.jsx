@@ -20,7 +20,7 @@ const ReviewModal = ({ place_name, road_address_name, onClose, onSave }) => {
       alert('리뷰는 30자 이상이어야 합니다.');
       return;
     } else {
-      alert('리뷰가 저장되었어요');
+      alert('리뷰가 저장되었습니다.');
     }
    
     
@@ -89,11 +89,11 @@ const ReviewModal = ({ place_name, road_address_name, onClose, onSave }) => {
               />
             </div>
             <p className="mt-[40px] font-bold text-[#365a31]">
-              리뷰는 15일 이내에 삭제할 수 있습니다.
+              리뷰 등록 시 15일 경과 후 삭제할 수 있으니, 신중하게 작성하시길 바랍니다.
             </p>
             <div className="m-auto mt-[20px] flex h-[30px] w-[80px] items-center justify-center rounded-xl bg-[#365a31]">
               <button onClick={handleSave} className="text-white">
-                리뷰 등록
+                등록하기
               </button>
             </div>
           </div>
