@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 console.log(process.env.REACT_APP_KAKAO_CLIENT_ID);
 console.log(process.env.REACT_APP_KAKAO_REDIRECT_URI);
@@ -14,6 +14,7 @@ const KakaoLogin = () => {
       src="/images/kakao_Login_medium.png"
       alt="Kakao Login"
       onClick={handleLogin}
+      className="animate-bounce"
     />
   );
 };
