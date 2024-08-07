@@ -49,6 +49,7 @@ function App() {
       <div className="content">
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="/" element={<MainPage />} />
           <Route path="/MainPage" element={<MainPage />} />
           <Route path="/About" element={<About />} />
           <Route path="/ReviewPage" element={<ReviewPage />} />
