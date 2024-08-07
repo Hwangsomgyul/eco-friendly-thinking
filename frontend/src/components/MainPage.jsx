@@ -99,17 +99,17 @@ const MainPage = () => {
       <div className='w-[1400px] h-[1900px] mx-auto mt-[100px] justify-center'>
         <div className='flex font-bold text-[25px] text-[#365a31] items-center justify-center'>
           지구용사
-          <p className='font-normal text-black'>님의 경험을 공유해주세요!</p>
+          <p className='font-normal text-black'> 님의 경험을 공유해 주세요!</p>
         </div>
 
         <div>
           <div className='flex items-center text-[15px] justify-center w-[1400px] h-[60px] mt-[30px] mb-[30px] mx-auto gap-[30px] rounded-md border-2 border-[#365a31]'>
             <p>24-07-31</p>
             <p>
-              김민지민지 님의 종로구 무단투기 제보가 55개의 공감을 얻어 해당
+              김민지민지 님의 종로구 무단 투기 제보가 55개의 공감을 얻어 해당
               구청에 민원 제기될 예정입니다!
             </p>
-            <p>+50 point</p>
+            <p>+ 50 point!</p>
           </div>
         </div>
 
@@ -198,7 +198,7 @@ const MainPage = () => {
                 <div id='left-word'>
                   <h1 className='text-[25px] font-bold'>최신 포럼</h1>
                   <p className='flex text-[15px] mb-[30px]'>
-                    지역구의 무단투기 현장을 찾아 제보하고 20 포인트를 받으세요!
+                    지역구의 무단 투기 현장을 찾아 제보하고 20 포인트를 받으세요!
                     <br /> 30명의 동의를 얻으면 추가 포인트까지!
                   </p>
                 </div>
