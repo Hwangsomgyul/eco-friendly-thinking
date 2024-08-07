@@ -1,5 +1,11 @@
 import React, { Component, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useNavigate,
+  Navigate,
+} from 'react-router-dom';
 import './App.css';
 
 import { Login } from './pages/Login.jsx';
@@ -50,7 +56,7 @@ function App() {
       <Header />
       <div className="content">
         <Routes>
-          <Route path="/" element={<MainPage />} />
+          <Route path="/" element={<Navigate to="/MainPage" />} />
           <Route path="/MainPage" element={<MainPage />} />
           <Route path="/About" element={<About />} />
           <Route path="/ReviewPage" element={<ReviewPage />} />
