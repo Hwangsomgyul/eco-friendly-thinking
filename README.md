@@ -1,2 +1,1 @@
-내정보 페이지 UI 구현 완료
-약간의 UI변경 있습니다
+Mainly work on Forum, ReviewPage, Header, and Footer.

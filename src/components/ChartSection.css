@@ -2,7 +2,7 @@ article .inner {
   position: relative; /*::bofore 요소 위쪽으로 배치되게 하기 위해 position 처리 */
 }
 
-article::before {
+/* article::before {
   content: "";
   display: block;
   width: 20%;
@@ -10,10 +10,10 @@ article::before {
   position: absolute;
   background: #d6efd8;
   top: 0px;
-  left: -200px; /*마우스 호버 전 article의 왼쪽 바깥쪽에 배치*/
-  opacity: 0; /*마우스 호버 전 투명하게 숨김 처리*/
+  left: -200px; 
+  opacity: 0;
   transition: 1s;
-}
+} */
 
 article:hover::before {
   /*article 요소에 호버시 ::before 변경 구문*/

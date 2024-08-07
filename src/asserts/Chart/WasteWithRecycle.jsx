@@ -45,12 +45,6 @@ const labels = years; //라벨 넣기
 
 // 지역구에 따라 변경되는 데이터들
 
-const population = [
-  10373234, 10331244, 10280523, 10276968, 10287847, 10297004, 10356202,
-  10421782, 10456034, 10464051, 10575447, 10528774, 10442426, 10388055,
-  10369593, 10297138, 10204057, 10124579, 10049607, 10010983, 9911088, 9736027,
-  9667669,
-];
 const waste_total = [
   32192, 42737, 48328, 48189, 45839, 32317, 45427, 44204, 44942, 43786, 37747,
   39464, 37844, 34474, 37200, 41711, 45118, 45894, 46188, 47643, 51887, 48036,
@@ -79,19 +73,19 @@ const recycle_rate = [
 // (최대 - 최소) / 5 해서 축 개수 맞추기
 // 10000 단위로 버려서 뒤에 숫자 깔끔하게
 
-const minPop = Math.min(...population) - 10000;
-const maxPop = Math.max(...population) + 10000;
+// const minPop = Math.min(...population) - 10000;
+// const maxPop = Math.max(...population) + 10000;
 const maxWaste = Math.max(...waste_total);
 
 //chart data
-const mixPopul_Waste = {
+const datas = {
   labels: labels, // x축
   datasets: [
     {
       type: "line",
       yAxisID: "y-axis-2",
-      label: "생활인구(명)",
-      data: population,
+      label: "재활용률(%)",
+      data: recycle_rate,
       backgroundColor: "#D6EFD8",
       borderColor: "#D6EFD8",
       borderWidth: 2,
@@ -128,6 +122,14 @@ const options = {
         color: "#FFFFFF", // 범례 폰트 색상 흰색으로 설정
       },
     },
+    title: {
+      display: true, // 제목 표시 여부
+      text: "서울특별시 재활용률 및 일일 폐기물 처리량", // 차트 제목
+      font: {
+        size: 20, // 폰트 크기
+      },
+      color: "#FFFFFF", // 제목 색상
+    },
   },
   scales: {
     x: {
@@ -158,21 +160,16 @@ const options = {
     "y-axis-2": {
       type: "linear", // 보조축 사용
       position: "right",
-      min: 9200000,
-      max: 10800000,
-
+      min: 0,
+      max: 100,
       grid: {
-        // display: false,
+        display: false,
         drawOnChartArea: true, // 두 y축의 그리드 라인 겹치게 설정
         color: "#C0C0C0",
         borderDash: [5, 5], // 대시 패턴 설정 [대시 길이, 공백 길이],
       },
       ticks: {
         color: "#C0C0C0", // 눈금 색상
-        stepSize: 250000,
-        callback: function (value) {
-          return (Math.floor(value / 10000) * 10000).toLocaleString(); // 1만 단위로 버림
-        },
       },
     },
   },
@@ -189,10 +186,10 @@ const options = {
 // };
 
 // 차트 그리기
-export const WasteWithPop = () => {
+export const WasteWithRecycle = () => {
   return (
     <div style={{ backgroundColor: "#2B422A" }}>
-      <Chart data={mixPopul_Waste} options={options} />
+      <Chart data={datas} options={options} />
     </div>
   );
 };

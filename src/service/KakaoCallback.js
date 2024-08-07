@@ -8,6 +8,7 @@ const KakaoCallback = () => {
 
   useEffect(() => {
     const code = new URL(window.location.href).searchParams.get("code");
+    console.log(code);
     if (code) {
       axios
         .post(`${process.env.REACT_APP_API_URL}/auth/kakao`, { code })
@@ -15,7 +16,8 @@ const KakaoCallback = () => {
           const { token, user } = response.data;
           localStorage.setItem("token", token);
           localStorage.setItem("user", JSON.stringify(user));
-          navigate("/dashboard");
+          //이동
+          window.location.href = response.url;
         })
         .catch((error) => {
           console.error("카카오 로그인 에러:", error);
