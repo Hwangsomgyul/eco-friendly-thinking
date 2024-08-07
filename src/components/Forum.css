@@ -1,0 +1,125 @@
+.forum {
+    font-family: 'Nanum Gothic', sans-serif;
+  }
+  
+  .upload-section {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .image-upload {
+    border: 1px dashed #cccccc;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .text-input {
+    border: 1px solid #cccccc;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .register-button {
+    background-color: #5a9;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .register-button:hover {
+    background-color: #508D4E;
+  }
+  
+  .point-notification {
+    margin-left: 10px;
+    color: #508D4E;
+    font-weight: bold;
+  }
+  
+  .region-selector select {
+    margin-top: 10px;
+    border: 1px solid #cccccc;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .same-content-check {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .map-info {
+    border: 1px solid #ccc;
+    padding: 20px;
+    height: 200px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }
+  
+  .posts-section {
+    margin-top: 20px;
+  }
+  
+  .post {
+    display: flex;
+    border-bottom: 1px dashed #365a31;
+    padding: 20px 0;
+  }
+  
+  .post-image {
+    width: 100px;
+    height: 100px;
+    background-color: #f0f0f0;
+    margin-right: 20px;
+  }
+  
+  .post-content {
+    flex: 1;
+  }
+  
+  .post-header {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .post-region {
+    font-weight: bold;
+  }
+  
+  .post-date {
+    color: #aaa;
+  }
+  
+  .post-text {
+    margin-top: 10px;
+  }
+  
+  .post-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .post-views {
+    color: #555;
+  }
+  
+  .post-author {
+    display: flex;
+    align-items: center;
+  }
+  
+  .post-author img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+  
