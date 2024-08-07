@@ -5,6 +5,8 @@ import axios from 'axios';
 
 import image1 from '../images/image1.jpg';
 import edit from '../images/edit.svg';
+import { UserInfo } from './UserInfo';
+import { Notice } from './Notice';
 
 // const userId = localStorage.getItem('userId');
 // console.log(userId);
@@ -17,14 +19,13 @@ const MyPage = () => {
 
   useEffect(() => {
     const userId = localStorage.getItem('userId');
-    console.log(userId);
     if (userId) {
       axios
         .get(`${process.env.REACT_APP_API_URL}/user/${userId}`)
         .then((response) => {
           const { email, nickname } = response.data;
-          console.log('Received data:', response.data);
           setUserInfo({ email, name: nickname });
+          console.log(userInfo);
         })
         .catch((error) => {
           console.error('Error fetching user info:', error);
@@ -33,6 +34,10 @@ const MyPage = () => {
       console.error('No user ID found');
     }
   }, []);
+
+  console.log(userInfo.name);
+  const userName = userInfo.name;
+  console.log(userName);
 
   return (
     <div>
@@ -126,57 +131,8 @@ const MyPage = () => {
             </div>
           </div>
           <div className="flex flex-col gap-[20px]">
-            <div className="flex h-[420px] w-[300px] flex-col items-center rounded-xl border-2">
-              <img
-                src={image1}
-                alt="image 1"
-                className="mt-[10px] h-[250px] w-[250px] rounded-[125px]"
-              />
-              <div className="mt-[10px] flex flex-col items-center">
-                <div className="flex items-center justify-center space-x-[30px]">
-                  <p type="text" className="text-[25px]">
-                    닉네임
-                  </p>
-                  <img
-                    src={edit}
-                    alt="edit image"
-                    className="h-[30px] w-[30px] cursor-pointer"
-                  />
-                </div>
-                <div className="mt-[20px] flex flex-col items-center">
-                  <div className="flex w-full justify-between gap-[50px] px-[10px]">
-                    <p className="font-bold text-blue-500">나의 포인트</p>
-                    <p>500</p>
-                  </div>
-                  <div className="mt-[5px] flex w-full justify-between px-[10px]">
-                    <p className="font-bold text-blue-500">응모건수</p>
-                    <p>10</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex h-[400px] w-[300px] rounded-xl border-2">
-              <div className="ml-[40px] mt-[40px]">
-                <p className="text-[20px]">당첨 결과 공지</p>
-                <div className="mt-[40px] flex flex-col gap-[10px]">
-                  <p className="text-[20px] text-gray-500">
-                    이런이벤트 당첨자 결과
-                  </p>
-                  <p className="text-[20px] text-gray-500">
-                    이런이벤트 당첨자 결과
-                  </p>
-                  <p className="text-[20px] text-gray-500">
-                    이런이벤트 당첨자 결과
-                  </p>
-                  <p className="text-[20px] text-gray-500">
-                    이런이벤트 당첨자 결과
-                  </p>
-                  <p className="text-[20px] text-gray-500">
-                    이런이벤트 당첨자 결과
-                  </p>
-                </div>
-              </div>
-            </div>
+            <UserInfo name={userName}></UserInfo>
+            <Notice></Notice>
           </div>
         </div>
       </div>
