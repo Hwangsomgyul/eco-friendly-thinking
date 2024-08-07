@@ -1,23 +1,21 @@
-import React from "react";
-import image1 from "../images/image1.jpg";
-import edit from "../images/edit.svg";
+import React, {useState} from 'react';
+import Header from './Header';
+import Footer from './Footer';
+
+import image1 from '../images/image1.jpg';
+import edit from '../images/edit.svg';
 
 const MyPage = () => {
-  return (
-    <div>
-      <div className="w-[1400px] h-[1000px] mx-auto mt-[70px] justify-center">
-        <div className="flex">
-          <div className="w-[150px] h-[60px] text-[20px] flex justify-center items-center rounded-t-lg bg-[#D6EFD8] cursor-pointer hover:bg-[#365a31] hover:text-white">
-            내 정보
-          </div>
-          <div className="w-[150px] h-[60px] text-[20px] flex justify-center items-center rounded-t-lg cursor-pointer  hover:bg-[#365a31] hover:text-white">
-            내 리뷰
-          </div>
-          <div className="h-[50px] border-r-2"></div>
-          <div className="w-[150px] h-[60px] text-[20px] flex justify-center items-center rounded-t-lg cursor-pointer hover:bg-[#365a31] hover:text-white">
-            내 포럼
-          </div>
-        </div>
+
+    
+    return (
+        <div>
+                <div className='w-[1400px] h-[1000px] mx-auto mt-[70px] justify-center'>
+                  <div className='flex'>
+                    <div className='w-[150px] h-[60px] text-[20px] flex justify-center items-center border-2 rounded-xl bg-[#D6EFD8] cursor-pointer hover:bg-[#365a31] hover:text-white'>내 정보</div> 
+                    <div className='w-[150px] h-[60px] text-[20px] flex justify-center items-center border-2 rounded-xl cursor-pointer hover:bg-[#365a31] hover:text-white'>내 리뷰</div>  
+                    <div className='w-[150px] h-[60px] text-[20px] flex justify-center items-center border-2 rounded-xl cursor-pointer hover:bg-[#365a31] hover:text-white'>내 포럼</div>   
+                  </div>
 
         <div className="flex justify-between">
           <div className="bg-gradient-to-b from-[#D6EFD8] to-white w-[1040px] h-[840px] rounded-tr-lg">
@@ -82,16 +80,54 @@ const MyPage = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col gap-4 w-[300px]">
-                    <div className="font-bold border-b-2 border-[#365a31] pb-2">
-                      포인트
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <p>+ 30</p>
-                      <p>+ 500</p>
-                      <p>+ 10</p>
-                      <p>+ 20</p>
-                      <p>+ 10</p>
+                                
+                                        <div className='flex flex-col gap-4 w-[300px]'>
+                                            <div className='font-bold border-b-2 border-[#365a31] pb-2'>포인트</div>
+                                            <div className='flex flex-col gap-2'>
+                                                <p>+ 30</p>
+                                                <p>+ 500</p>
+                                                <p>+ 10</p>
+                                                <p>+ 20</p>
+                                                <p>+ 10</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='flex flex-col gap-[20px]'>
+                            <div className='flex flex-col w-[300px] rounded-xl border-2 h-[420px] items-center'>
+                                <img src={image1} alt="image 1" className='w-[250px] h-[250px] mt-[10px] rounded-[125px]'/>
+                                <div className='flex flex-col items-center mt-[10px]'>
+                                    <div className='flex items-center justify-center space-x-[30px]'>
+                                        <p type='text' className='text-[25px]'>닉네임</p>
+                                        <img src={edit} alt="edit image" className='w-[30px] h-[30px] cursor-pointer'/>
+                                    </div>
+                                    <div className='flex flex-col items-center mt-[20px]'>
+                                        <div className='flex justify-between w-full px-[10px] gap-[50px]'>
+                                            <p className='text-blue-500 font-bold'>나의 포인트</p>
+                                            <p>500</p>
+                                        </div>
+                                        <div className='flex justify-between w-full px-[10px] mt-[5px]'>
+                                            <p className='text-blue-500 font-bold'>응모건수</p>
+                                            <p>10</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='rounded-xl border-2 w-[300px] h-[400px] flex'>
+                                <div className='mt-[40px] ml-[40px]'>
+                                    <p className='text-[20px]'>당첨 결과 공지</p>
+                                    <div className='mt-[40px] flex flex-col gap-[10px]'>
+                                        <p className='text-gray-500 text-[20px]'>이런이벤트 당첨자 결과</p>
+                                        <p className='text-gray-500 text-[20px]'>이런이벤트 당첨자 결과</p>
+                                        <p className='text-gray-500 text-[20px]'>이런이벤트 당첨자 결과</p>
+                                        <p className='text-gray-500 text-[20px]'>이런이벤트 당첨자 결과</p>
+                                        <p className='text-gray-500 text-[20px]'>이런이벤트 당첨자 결과</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -148,7 +184,6 @@ const MyPage = () => {
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </div>
     </div>
