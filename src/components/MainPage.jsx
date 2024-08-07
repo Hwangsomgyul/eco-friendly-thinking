@@ -240,7 +240,7 @@ const MainPage = () => {
 
           <div className='flex justify-center items-center'>
             <Link
-              to='/ReviewPage'
+              to='/Forum'
               className='px-[20px] py-[10px] bg-[#365a31] text-white font-bold rounded'
             >
               더보기
