@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Forum.css';
+import axios from 'axios';
 
 import boxOk from '../images/boxOk.svg';
 import boxNotOk from '../images/boxNotOk.svg';
@@ -7,13 +8,13 @@ import boxNotOk from '../images/boxNotOk.svg';
 const Forum = () => {
   const [selectedGu, setSelectedGu] = useState('강남구');
   const [description, setDescription] = useState('');
-  const [points, setPoints] = useState({ register: 0, checkbox: 0 });
-  const [hovered, setHovered] = useState({ register: false, checkbox: false });
   const [posts, setPosts] = useState([]);
   const [hover, setHover] = useState(false);
   const [clicked, setClicked] = useState(false);
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태 추가
+  const [setTotalPages] = useState(1);
   const postsPerPage = 5; // 페이지당 게시글 수
+  const access_token = 'your_access_token'; // 실제 액세스 토큰으로 대체
 
   const handleMouseEnter = () => {
     setHover(true);
@@ -32,26 +33,28 @@ const Forum = () => {
                   '마포구', '서대문구', '서초구', '성동구', '성북구', '송파구',
                   '양천구', '영등포구', '용산구', '은평구', '종로구', '중구', '중랑구'];
   
-  useEffect(() => {
+ useEffect(() => {
     const fetchPosts = async () => {
-      setPosts([
-        {
-          id: 1,
-          region: '강남구',
-          date: '2024-07-27 20:00',
-          content: '여기에 게시글 내용이 들어갑니다.',
-          views: 8,
-          author: {
-            name: '닉네임',
-            avatar: 'https://via.placeholder.com/30'
-          }
-        },
-        // 추가 게시물들...
-      ]);
+      try {
+        const response = await axios.get('/api/community', {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+          params: {
+            page: currentPage,
+            limit: postsPerPage,
+            filter: selectedGu, // 선택된 구를 필터로 사용
+          },
+        });
+        setPosts(response.data.posts);
+        setTotalPages(response.data.totalPages);
+      } catch (error) {
+        console.error('게시글을 불러오는 중 오류 발생:', error);
+      }
     };
 
     fetchPosts();
-  }, [selectedGu]);
+  }, [currentPage, selectedGu]);
 
   useEffect(() => {
     const loadKakaoMap = () => {

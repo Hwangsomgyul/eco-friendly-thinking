@@ -101,6 +101,7 @@ const ReviewPage = () => {
             </div>
           </div>
         </div>
+        
         <div className="grid grid-cols-4 gap-[30px]">
           {reviews.map((review, index) => (
             <div key={index} className="w-full">
@@ -118,6 +119,7 @@ const ReviewPage = () => {
             </div>
           ))}
         </div>
+
         {/* 페이지네이션 섹션 */}
         <div className="pagination mt-4 flex justify-center">
           {[...Array(totalPages)].map((_, i) => (
