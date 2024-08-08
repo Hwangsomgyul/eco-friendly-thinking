@@ -1,35 +1,75 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
 
-.footer {
+.footer-container {
+    display: flex;
+    padding: 16px;
+    width: 100%;
+}
+
+.footer-content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(to bottom, #ffffff, #A8C8A8) !important;
-    font-family: 'Poppins', Arial, sans-serif;
-    padding: 8px; /* 기존 16px에서 8px로 줄임 */
-    margin-top: auto; 
-    border: none;
-  }
-  
-  html[lang="ko"] .footer {
-    font-family: 'Nanum Gothic', sans-serif;
-  }
-  
-  .footer-content {
+    align-items: flex-start;
     max-width: 800px;
     width: 100%;
-    text-align: center;
-    font-size: 12px; /* 텍스트 크기 축소 */
-  }
-  
-  .footer-links,
-  .footer-company, .footer-contact {
-    margin-bottom: 4px; /* 여백을 줄임 */
-    font-size: 12px; /* 텍스트 크기 축소 */
-  }
-  
-  .footer-copyright {
-    font-size: 10px; /* 저작권 부분의 글자 크기 축소 */
-  }
+    text-align: left;
+    font-family: 'Nanum Gothic', sans-serif;
+    color: #333;
+}
+
+.footer-company, .footer-contact {
+    font-size: 12px;  /* 폰트 크기를 12px로 조정 */
+    color: #888;
+    margin-top: 8px;
+}
+
+.footer-company .bold, .footer-contact .bold {
+    font-weight: bold;
+    color: #333;
+}
+
+.footer-contact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.separator {
+    margin: 0px;
+    color: black;
+}
+
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 16px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 8px;  /* 링크 간격을 줄임 */
+    font-size: 12px;  /* 폰트 크기를 12px로 조정 */
+    font-weight: bold;
+    cursor: pointer;
+    flex-shrink: 0;  /* 추가: 링크들이 압축되지 않도록 설정 */
+}
+
+.footer-link {
+    color: #365a31;
+    transition: color 0.3s;
+}
+
+.footer-link:hover {
+    color: white;
+}
+
+.footer-copyright {
+    font-size: 12px;  /* 폰트 크기를 12px로 조정 */
+    color: #365a31;
+    white-space: nowrap; /* 줄넘김 방지 */
+    margin-right: 16px; /* 저작권 텍스트 오른쪽 여백 조정 */
+}

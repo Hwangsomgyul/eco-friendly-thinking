@@ -199,7 +199,7 @@ const MainPage = () => {
                   <h1 className='text-[25px] font-bold'>최신 포럼</h1>
                   <p className='flex text-[15px] mb-[30px]'>
                     지역구의 무단 투기 현장을 찾아 제보하고 20 포인트를 받으세요!
-                    <br /> 30명의 동의를 얻으면 추가 포인트까지!
+                    <br /> 30명의 공감을 얻으면 추가 포인트까지!
                   </p>
                 </div>
                 <div className='flex flex-wrap gap-[10px]' id='img-container2'>
