@@ -11,7 +11,7 @@ const KakaoLogin = () => {
 
   return (
     <img
-      src="/images/kakao_Login_medium.png"
+      src="/images/kakao_login_medium.png"
       alt="Kakao Login"
       onClick={handleLogin}
       className="animate-bounce"
