@@ -4,8 +4,14 @@ exports.createReview = async (data) => {
   return await Review.create(data);
 };
 
-exports.getAllReviews = async () => {
-  return await Review.findAll();
+exports.getCountAllReviews = async () => {
+  return Review.findAndCountAll();
+};
+
+exports.getAllReviews = async (page, limit) => {
+  const offset = (page - 1) * limit;
+  //return await Review.findAll();
+  return await Review.findAll({ limit, offset });
 };
 
 exports.updateReview = async (id, data) => {

@@ -10,9 +10,15 @@ exports.createReview = async (req, res) => {
 };
 
 exports.getReviews = async (req, res) => {
+  const { page, limit } = req.query;
   try {
-    const reviews = await ReviewService.getAllReviews();
-    res.status(200).json(reviews);
+    const reviews = await ReviewService.getAllReviews(Number(page), Number(limit));
+    const reviewCount = await ReviewService.getCountAllReviews();
+    const response = {
+      reviews,
+      totalPages: reviewCount.count,
+    };
+    res.status(200).json(response);
   } catch (error) {
     res.status(500).json({ message: '리뷰 조회 실패', error });
   }
