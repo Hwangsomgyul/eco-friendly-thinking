@@ -19,21 +19,27 @@ const ReviewPage = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await axios.get('/api/reviews', {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-          params: {
-            page: currentPage,
-            limit: reviewsPerPage,
-          },
-        });
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/reviews`, 
+          {
+            headers: {
+              Authorization: `Bearer ${access_token}`,
+            },
+            params: {
+              page: currentPage,
+              //limit: reviewsPerPage,
+              limit: 3,
+            },
+          }
+        );
         setReviews(response.data.reviews);
         setTotalPages(response.data.totalPages);
+        
       } catch (error) {
         console.error('리뷰를 불러오는 중 오류 발생:', error);
       }
     };
+
 
     fetchReviews();
   }, [currentPage]);
@@ -80,12 +86,16 @@ const ReviewPage = () => {
   };
 
   const handleSaveReview = async (review) => {
+    const userId = localStorage.getItem('userId'); // 로컬 스토리지에서 userId 가져오기
+    const reviewData = {
+      user_id: userId, // 로컬 스토리지에서 가져온 userId 사용
+      content: review.text, // 리뷰 내용
+      score: review.rating, // 평점
+      business_name: "스타벅스 광화문점" // 비즈니스 이름
+    };
+
     try {
-      const response = await axios.post('/api/reviews', review, {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      });
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/reviews`, reviewData);
       setReviews([response.data, ...reviews]);
       setAddress([]); // 리뷰 저장 후 주소 목록 초기화
       closeModal();
@@ -145,11 +155,11 @@ const ReviewPage = () => {
                 className="h-[250px] w-full object-cover"
               />
               <div className="mt-[10px] flex items-center justify-between p-[5px]">
-                <div className="text-[20px] font-bold">작성자</div>
-                <div>{review.rating}/5.0</div>
-                <div className="font-[#585858]">2024-08-04</div>
+                <div className="text-[20px] font-bold">{review.user_id}</div>
+                <div>{review.score}/5.0</div>
+                <div className="font-[#585858]">{review.createdAt ? review.createdAt.slice(0, 10) : '날짜 없음'}</div>
               </div>
-              <p className="mt-[10px] p-[5px]">{review.text}</p>
+              <p className="mt-[10px] p-[5px]">{review.content}</p>
             </div>
           ))}
         </div>
