@@ -14,7 +14,7 @@ const KakaoLogin = () => {
       src="/images/kakao_login_medium.png"
       alt="Kakao Login"
       onClick={handleLogin}
-      className="animate-bounce"
+      className="animate-bounce cursor-pointer"
     />
   );
 };
