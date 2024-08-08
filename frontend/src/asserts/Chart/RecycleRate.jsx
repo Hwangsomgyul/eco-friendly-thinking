@@ -1,5 +1,5 @@
-import React from "react";
-import { Chart } from "react-chartjs-2";
+import React from 'react';
+import { Chart } from 'react-chartjs-2';
 
 import {
   ArcElement,
@@ -12,7 +12,7 @@ import {
   PointElement,
   Tooltip,
   registerables,
-} from "chart.js";
+} from 'chart.js';
 
 ChartJS.register(
   ...registerables,
@@ -23,7 +23,7 @@ ChartJS.register(
   LineElement,
   Legend,
   Tooltip,
-  ArcElement
+  ArcElement,
 );
 
 // <----- 정적 데이터 ----->
@@ -51,16 +51,16 @@ const datas = {
   labels: labels, // x축
   datasets: [
     {
-      type: "bar",
-      label: "열적 재활용률(%, 음식 외)", // 범례표시
+      type: 'bar',
+      label: '열적 재활용률(%, 음식 외)', // 범례표시
       data: rate_korea,
-      backgroundColor: "#ECAB7C",
+      backgroundColor: '#ECAB7C',
     },
     {
-      type: "bar",
-      label: "물질 재활용률(%, 전체 플라스틱)",
+      type: 'bar',
+      label: '물질 재활용률(%, 전체 플라스틱)',
       data: rate_EU,
-      backgroundColor: "#F4E285",
+      backgroundColor: '#F4E285',
     },
   ],
 };
@@ -72,16 +72,16 @@ const options = {
     legend: {
       display: true,
       labels: {
-        color: "#FFFFFF", // 범례 폰트 색상 흰색으로 설정
+        color: '#FFFFFF', // 범례 폰트 색상 흰색으로 설정
       },
     },
     title: {
       display: true, // 제목 표시 여부
-      text: "열적 재활용률과 물질 재활용률의 비교", // 차트 제목
+      text: '열적 재활용률과 물질 재활용률의 비교', // 차트 제목
       font: {
         size: 20, // 폰트 크기
       },
-      color: "#FFFFFF", // 제목 색상
+      color: '#FFFFFF', // 제목 색상
     },
   },
   scales: {
@@ -91,7 +91,7 @@ const options = {
       },
       ticks: {
         // 라벨 색상 변경
-        color: "#F5F5F5",
+        color: '#F5F5F5',
         font: {
           size: 15, // 라벨 폰트 크기
         },
@@ -102,16 +102,16 @@ const options = {
       min: 0,
       max: 50,
       ticks: {
-        color: "#C0C0C0", // 눈금 색상
+        color: '#C0C0C0', // 눈금 색상
         stepSize: 10,
       },
       grid: {
-        color: "#C0C0C0", // 그리드 색상
+        color: '#C0C0C0', // 그리드 색상
       },
     },
   },
   interaction: {
-    mode: "nearest", // 툴팁을 가장 가까운 데이터 포인트에 대해 표시
+    mode: 'nearest', // 툴팁을 가장 가까운 데이터 포인트에 대해 표시
     intersect: false,
   },
 };
@@ -125,8 +125,52 @@ const options = {
 // 차트 그리기
 export const RecycleRate = () => {
   return (
-    <div style={{ backgroundColor: "#2B422A" }}>
+    <div style={{ backgroundColor: '#2B422A' }}>
       <Chart data={datas} options={options} />
+    </div>
+  );
+};
+
+const miniOptions = {
+  plugins: {
+    legend: {
+      display: false, // 범례 숨기기
+    },
+    title: {
+      display: false, // 제목 숨기기
+    },
+    tooltip: {
+      enabled: false, // 툴팁 비활성화
+    },
+  },
+  interaction: {
+    mode: 'none', // 모든 인터랙션 비활성화
+  },
+  scales: {
+    x: {
+      grid: {
+        display: false, // x축 그리드 숨기기
+      },
+      ticks: {
+        display: false, // x축 눈금 숨기기
+      },
+    },
+    y: {
+      beginAtZero: true,
+      grid: {
+        display: false, // y축 그리드 숨기기
+      },
+      ticks: {
+        display: false, // y축 눈금 숨기기
+      },
+    },
+  },
+};
+
+export const MiniChart04 = () => {
+  return (
+    <div className="bg-transparent">
+      <Chart className="bg-transparent" data={datas} options={miniOptions} />
     </div>
   );
 };

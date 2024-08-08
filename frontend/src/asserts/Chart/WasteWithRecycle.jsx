@@ -1,5 +1,5 @@
-import React from "react";
-import { Chart } from "react-chartjs-2";
+import React from 'react';
+import { Chart } from 'react-chartjs-2';
 
 import {
   ArcElement,
@@ -12,7 +12,7 @@ import {
   PointElement,
   Tooltip,
   registerables,
-} from "chart.js";
+} from 'chart.js';
 
 ChartJS.register(
   ...registerables,
@@ -23,16 +23,16 @@ ChartJS.register(
   LineElement,
   Legend,
   Tooltip,
-  ArcElement
+  ArcElement,
 );
 
 // <----- 정적 데이터 ----->
-const years = new Array(23).fill(0).map((_, idx) => idx + 2000 + "년");
+const years = new Array(23).fill(0).map((_, idx) => idx + 2000 + '년');
 const label_years = years.map((idx) => {
   if (idx % 5 !== 0) {
-    return "";
+    return '';
   } else {
-    return idx + "년";
+    return idx + '년';
   }
 });
 const labels = years; //라벨 넣기
@@ -82,32 +82,32 @@ const datas = {
   labels: labels, // x축
   datasets: [
     {
-      type: "line",
-      yAxisID: "y-axis-2",
-      label: "재활용률(%)",
+      type: 'line',
+      yAxisID: 'y-axis-2',
+      label: '재활용률(%)',
       data: recycle_rate,
-      backgroundColor: "#D6EFD8",
-      borderColor: "#D6EFD8",
+      backgroundColor: '#D6EFD8',
+      borderColor: '#D6EFD8',
       borderWidth: 2,
       tension: 0.2, // 선의 휘어짐 정도
     },
     {
-      type: "bar",
-      label: "매립(톤/일)", // 범례표시
+      type: 'bar',
+      label: '매립(톤/일)', // 범례표시
       data: waste_land,
-      backgroundColor: "#ECAB7C",
+      backgroundColor: '#ECAB7C',
     },
     {
-      type: "bar",
-      label: "소각(톤/일)",
+      type: 'bar',
+      label: '소각(톤/일)',
       data: waste_burn,
-      backgroundColor: "#F4E285",
+      backgroundColor: '#F4E285',
     },
     {
-      type: "bar",
-      label: "재활용(톤/일)",
+      type: 'bar',
+      label: '재활용(톤/일)',
       data: waste_recycle,
-      backgroundColor: "#A7C957",
+      backgroundColor: '#A7C957',
     },
   ],
 };
@@ -119,16 +119,16 @@ const options = {
     legend: {
       display: true,
       labels: {
-        color: "#FFFFFF", // 범례 폰트 색상 흰색으로 설정
+        color: '#FFFFFF', // 범례 폰트 색상 흰색으로 설정
       },
     },
     title: {
       display: true, // 제목 표시 여부
-      text: "서울특별시 재활용률 및 일일 폐기물 처리량", // 차트 제목
+      text: '서울특별시 재활용률 및 일일 폐기물 처리량', // 차트 제목
       font: {
         size: 20, // 폰트 크기
       },
-      color: "#FFFFFF", // 제목 색상
+      color: '#FFFFFF', // 제목 색상
     },
   },
   scales: {
@@ -141,9 +141,9 @@ const options = {
         // 라벨 색상 변경
         color: function (context) {
           if (context.index % 5 === 0 || context.index === labels.length - 1) {
-            return "#F5F5F5"; // 5의 배수거나 인덱스 마지막 년도는
+            return '#F5F5F5'; // 5의 배수거나 인덱스 마지막 년도는
           }
-          return "rgba(0, 0, 0, 0)"; // 나머지는 투명
+          return 'rgba(0, 0, 0, 0)'; // 나머지는 투명
         },
       },
     },
@@ -151,45 +151,92 @@ const options = {
       stacked: true,
       beginAtZero: true,
       ticks: {
-        color: "#C0C0C0", // 눈금 색상
+        color: '#C0C0C0', // 눈금 색상
       },
       grid: {
-        color: "#C0C0C0", // 그리드 색상
+        color: '#C0C0C0', // 그리드 색상
       },
     },
-    "y-axis-2": {
-      type: "linear", // 보조축 사용
-      position: "right",
+    'y-axis-2': {
+      type: 'linear', // 보조축 사용
+      position: 'right',
       min: 0,
       max: 100,
       grid: {
         display: false,
         drawOnChartArea: true, // 두 y축의 그리드 라인 겹치게 설정
-        color: "#C0C0C0",
+        color: '#C0C0C0',
         borderDash: [5, 5], // 대시 패턴 설정 [대시 길이, 공백 길이],
       },
       ticks: {
-        color: "#C0C0C0", // 눈금 색상
+        color: '#C0C0C0', // 눈금 색상
       },
     },
   },
   interaction: {
-    mode: "nearest", // 툴팁을 가장 가까운 데이터 포인트에 대해 표시
+    mode: 'nearest', // 툴팁을 가장 가까운 데이터 포인트에 대해 표시
     intersect: false,
   },
 };
 
-// 데이터 가공 함수
-// export const handleData = () => {
-//   // 전달받은 props로 data 구성 후 리턴 data로 전달
-//   return data;
-// };
+const miniOptions = {
+  plugins: {
+    legend: {
+      display: false, // 범례 숨기기
+    },
+    title: {
+      display: false, // 제목 숨기기
+    },
+    tooltip: {
+      enabled: false, // 툴팁 비활성화
+    },
+  },
+  interaction: {
+    mode: 'none', // 모든 인터랙션 비활성화
+  },
+  scales: {
+    x: {
+      grid: {
+        display: false, // x축 그리드 숨기기
+      },
+      ticks: {
+        display: false, // x축 눈금 숨기기
+      },
+    },
+    y: {
+      beginAtZero: true,
+      grid: {
+        display: false, // y축 그리드 숨기기
+      },
+      ticks: {
+        display: false, // y축 눈금 숨기기
+      },
+    },
+    'y-axis-2': {
+      beginAtZero: true,
+      grid: {
+        display: false, // y축 그리드 숨기기
+      },
+      ticks: {
+        display: false, // y축 눈금 숨기기
+      },
+    },
+  },
+};
 
 // 차트 그리기
 export const WasteWithRecycle = () => {
   return (
-    <div style={{ backgroundColor: "#2B422A" }}>
+    <div>
       <Chart data={datas} options={options} />
+    </div>
+  );
+};
+
+export const MiniChart03 = () => {
+  return (
+    <div>
+      <Chart data={datas} options={miniOptions} />
     </div>
   );
 };

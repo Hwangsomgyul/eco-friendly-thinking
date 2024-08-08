@@ -1,11 +1,10 @@
-import React from "react";
-import { WasteYearly } from "../../asserts/Chart/WasteYearly";
-import "./ChartModal.css";
+import React from 'react';
+import { WasteYearly } from '../../asserts/Chart/WasteYearly';
+import './ChartModal.css';
 
 export const ChartModal01 = ({ isOpen, onClose }) => {
-
   return (
-    <aside className={`bg-blackGreen animate-fadeOn`}>
+    <aside className={`animate-fadeOn bg-blackGreen`}>
       <div className="txt">
         <h1 className="">01</h1>
         <span className="hover:text-white" onClick={onClose}>
