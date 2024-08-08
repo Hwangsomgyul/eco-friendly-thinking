@@ -225,7 +225,7 @@ const Forum = () => {
   };
 
   const handleShowCCTVMarkers = async () => {
-    const excelFile2 = '/datas/12_04_08_E_CCTV정보.xlsx'; // 엑셀 파일 경로 설정
+    const excelFile2 = '/datas/12_04_08_E_CCTV정보2.xlsx'; // 엑셀 파일 경로 설정
     // const excelFile2 = 'datas/CCTVPlace.xlsx'; // CCTV 파일 경로
 
     try {
