@@ -103,7 +103,7 @@ const kakaoAuth = {
         });
         // 리디렉션 코드 수정
         res.redirect(
-          `http://localhost:3000/MainPage#access_token=${access_token}&user_id=${user.id}`
+          `http://kdt-ai-11-team03.elicecoding.com/MainPage#access_token=${access_token}&user_id=${user.id}`
         );
       } else {
         const newUser = await User.create({
@@ -123,7 +123,7 @@ const kakaoAuth = {
         });
         // 리디렉션 코드 수정
         res.redirect(
-          `http://localhost:3000/MainPage#access_token=${access_token}&user_id=${newUser.id}`
+          `http://kdt-ai-11-team03.elicecoding.com/MainPage#access_token=${access_token}&user_id=${newUser.id}`
         );
       }
     } catch (error) {
