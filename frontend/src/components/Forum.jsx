@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Forum.css';
 import axios from 'axios';
-
+import { read, utils } from 'xlsx';
 import boxOk from '../images/boxOk.svg';
 import boxNotOk from '../images/boxNotOk.svg';
 
@@ -11,10 +11,10 @@ const Forum = () => {
   const [posts, setPosts] = useState([]);
   const [hover, setHover] = useState(false);
   const [clicked, setClicked] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태 추가
-  const [setTotalPages] = useState(1);
-  const postsPerPage = 5; // 페이지당 게시글 수
-  const access_token = 'your_access_token'; // 실제 액세스 토큰으로 대체
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const postsPerPage = 5;
+  const access_token = 'your_access_token';
 
   const handleMouseEnter = () => {
     setHover(true);
@@ -32,8 +32,8 @@ const Forum = () => {
                   '구로구', '금천구', '노원구', '도봉구', '동대문구', '동작구',
                   '마포구', '서대문구', '서초구', '성동구', '성북구', '송파구',
                   '양천구', '영등포구', '용산구', '은평구', '종로구', '중구', '중랑구'];
-  
- useEffect(() => {
+
+  useEffect(() => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get('/api/community', {
@@ -43,7 +43,7 @@ const Forum = () => {
           params: {
             page: currentPage,
             limit: postsPerPage,
-            filter: selectedGu, // 선택된 구를 필터로 사용
+            filter: selectedGu,
           },
         });
         setPosts(response.data.posts);
@@ -93,13 +93,120 @@ const Forum = () => {
     loadKakaoMap();
   }, []);
 
-  // 이미지 업로드
+  const mapSettings = {
+    '강남구': { center: { lat: 37.4979, lng: 127.0276 }, level: 4 },
+    '강동구': { center: { lat: 37.5303, lng: 127.1224 }, level: 4 },
+    '강북구': { center: { lat: 37.6391, lng: 127.0254 }, level: 4 },
+    '강서구': { center: { lat: 37.5502, lng: 126.8499 }, level: 4 },
+    '관악구': { center: { lat: 37.4848, lng: 126.9516 }, level: 4 },
+    '광진구': { center: { lat: 37.5387, lng: 127.0724 }, level: 4 },
+    '구로구': { center: { lat: 37.4958, lng: 126.8821 }, level: 4 },
+    '금천구': { center: { lat: 37.4577, lng: 126.9008 }, level: 4 },
+    '노원구': { center: { lat: 37.6544, lng: 127.0550 }, level: 4 },
+    '도봉구': { center: { lat: 37.6688, lng: 127.0369 }, level: 4 },
+    '동대문구': { center: { lat: 37.5735, lng: 127.0390 }, level: 4 },
+    '동작구': { center: { lat: 37.5034, lng: 126.9374 }, level: 4 },
+    '마포구': { center: { lat: 37.5666, lng: 126.9067 }, level: 4 },
+    '서대문구': { center: { lat: 37.5796, lng: 126.9364 }, level: 4 },
+    '서초구': { center: { lat: 37.4831, lng: 127.0328 }, level: 4 },
+    '성동구': { center: { lat: 37.5633, lng: 127.0364 }, level: 4 },
+    '성북구': { center: { lat: 37.5894, lng: 127.0182 }, level: 4 },
+    '송파구': { center: { lat: 37.5147, lng: 127.1060 }, level: 4 },
+    '양천구': { center: { lat: 37.5161, lng: 126.8650 }, level: 4 },
+    '영등포구': { center: { lat: 37.5262, lng: 126.9026 }, level: 4 },
+    '용산구': { center: { lat: 37.5326, lng: 126.9901 }, level: 4 },
+    '은평구': { center: { lat: 37.6068, lng: 126.9296 }, level: 4 },
+    '종로구': { center: { lat: 37.5720, lng: 126.9794 }, level: 4 },
+    '중구': { center: { lat: 37.5636, lng: 126.9977 }, level: 4 },
+    '중랑구': { center: { lat: 37.6068, lng: 127.0928 }, level: 4 },
+  };
+
+  const handleShowTrashMarkers = async () => {
+    const excelFile = '/datas/쓰레기통 좌표 데이터_240730.xlsx';
+
+    try {
+      const response = await axios.get(excelFile, { responseType: 'arraybuffer' });
+      const data = new Uint8Array(response.data);
+      const workbook = read(data, { type: 'array' });
+      const sheetName = workbook.SheetNames[0];
+      const sheet = workbook.Sheets[sheetName];
+      const json = utils.sheet_to_json(sheet);
+      
+      const positions = json
+        .map(row => ({
+          lat: row['위도'],
+          lng: row['경도'],
+        }));
+
+      window.kakao.maps.load(() => {
+        const mapContainer = document.getElementById('map');
+        if (mapContainer && window.kakao.maps) {
+          const { center, level } = mapSettings[selectedGu] || mapSettings['강남구'];
+
+          const map = new window.kakao.maps.Map(mapContainer, {
+            center: new window.kakao.maps.LatLng(center.lat, center.lng),
+            level: level,
+          });
+
+          positions.forEach(position => {
+            const markerPosition = new window.kakao.maps.LatLng(position.lat, position.lng);
+            const marker = new window.kakao.maps.Marker({
+              position: markerPosition,
+            });
+            marker.setMap(map);
+          });
+        }
+      });
+    } catch (error) {
+      console.error('Error reading excel file:', error);
+    }
+  };
+
+  const handleShowCCTVMarkers = async () => {
+    const excelFile2 = '/datas/12_04_08_E_CCTV정보.xlsx';
+
+    try {
+      const response = await axios.get(excelFile2, { responseType: 'arraybuffer' });
+      const data = new Uint8Array(response.data);
+      const workbook = read(data, { type: 'array' });
+      const sheetName = workbook.SheetNames[0];
+      const sheet = workbook.Sheets[sheetName];
+      const json = utils.sheet_to_json(sheet);
+      
+      const positions = json
+        .map(row => ({
+          lat: row['WGS84위도'],
+          lng: row['WGS84경도'],
+        }));
+
+      window.kakao.maps.load(() => {
+        const mapContainer = document.getElementById('map');
+        if (mapContainer && window.kakao.maps) {
+          const { center, level } = mapSettings[selectedGu] || mapSettings['강남구'];
+
+          const map = new window.kakao.maps.Map(mapContainer, {
+            center: new window.kakao.maps.LatLng(center.lat, center.lng),
+            level: level,
+          });
+
+          positions.forEach(position => {
+            const markerPosition = new window.kakao.maps.LatLng(position.lat, position.lng);
+            const marker = new window.kakao.maps.Marker({
+              position: markerPosition,
+            });
+            marker.setMap(map);
+          });
+        }
+      });
+    } catch (error) {
+      console.error('Error reading excel file:', error);
+    }
+  };
+
   const handleImageUpload = (event) => {
-    // 파일 업로드
     console.log(event.target.files[0]);
   };
 
-  // 게시글 등록 처리
   const handlePostSubmit = () => {
     if (description.trim()) {
       const newPost = {
@@ -113,21 +220,16 @@ const Forum = () => {
           avatar: '',
         },
       };
-      setPosts([newPost, ...posts]); // 새로운 게시글을 앞에 추가
-      setDescription(''); // 입력 필드 초기화
+      setPosts([newPost, ...posts]);
+      setDescription('');
     }
   };
 
-  // 현재 페이지에 표시할 게시글 계산
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
-  // 페이지 번호 변경 핸들러
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  // 총 페이지 수 계산
-  const totalPages = Math.ceil(posts.length / postsPerPage);
 
   return (
     <div>
@@ -135,20 +237,20 @@ const Forum = () => {
         <div className='flex w-full h-[430px] gap-[20px]'>
           <div id='map' className='w-[1000px] h-[430px] relative z-0'>
             <div className='flex gap-[10px] z-10 relative m-2'>
-              <button className='p-2 rounded bg-[#365a31] h-[80px] w-[80px] text-white'>쓰레기통</button>
-              <button className='p-2 rounded bg-[#365a31] h-[80px] w-[80px] text-white'>CCTV</button>
+              <button onClick={handleShowTrashMarkers} className='p-2 rounded bg-[#365a31] h-[80px] w-[80px] text-white'>쓰레기통</button>
+              <button onClick={handleShowCCTVMarkers} className='p-2 rounded bg-[#365a31] h-[80px] w-[80px] text-white'>CCTV</button>
             </div>
           </div>
 
           <div>
-          <div className='flex items-center gap-[10px]'>
-  <p className="text-[22px] font-bold">무단 투기 신고 지역</p>
-  <div className="region-selector flex-grow">
-    <select className="w-[250px] border border-gray-300 p-2 rounded" value={selectedGu} onChange={(e) => setSelectedGu(e.target.value)}>
-      {guList.map(gu => <option key={gu} value={gu}>{gu}</option>)}
-    </select>
-  </div>
-</div>
+            <div className='flex items-center gap-[10px]'>
+              <p className="text-[22px] font-bold">무단 투기 신고 지역</p>
+              <div className="region-selector flex-grow">
+                <select className="w-[250px] border border-gray-300 p-2 rounded" value={selectedGu} onChange={(e) => setSelectedGu(e.target.value)}>
+                  {guList.map(gu => <option key={gu} value={gu}>{gu}</option>)}
+                </select>
+              </div>
+            </div>
 
             <div className='flex mt-[15px] justify-between'>
               <p>동일한 내용의 게시글이 이미 등록되어 있나요?</p>
@@ -165,15 +267,15 @@ const Forum = () => {
               </div>
             </div>
             <div className='mt-[15px] flex gap-[10px]'>
-            <div className='bg-[#D6EFD8] w-[230px] h-[270px] flex justify-center items-center text-[20px] cursor-pointer' onClick={() => document.getElementById('fileUpload').click()}>
-  image upload
-  <input
-    type="file"
-    id="fileUpload"
-    className="hidden"
-    onChange={handleImageUpload}
-  />
-</div>
+              <div className='bg-[#D6EFD8] w-[230px] h-[270px] flex justify-center items-center text-[20px] cursor-pointer' onClick={() => document.getElementById('fileUpload').click()}>
+                image upload
+                <input
+                  type="file"
+                  id="fileUpload"
+                  className="hidden"
+                  onChange={handleImageUpload}
+                />
+              </div>
 
               <textarea
                 className="w-full h-360px p-2 border border-gray-300 rounded"
@@ -218,7 +320,6 @@ const Forum = () => {
           ))}
         </div>
 
-        {/* 페이지네이션 섹션 */}
         <div className="pagination mt-4 flex justify-center">
           {[...Array(totalPages)].map((_, i) => (
             <span
