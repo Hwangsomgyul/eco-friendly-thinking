@@ -1,0 +1,34 @@
+/* 공통 스타일 */
+.page-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Nanum Gothic', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.page-container h1 {
+    color: #365a31;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.page-container h2 {
+    color: #365a31;
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.page-container p {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+/* 강조 스타일 */
+.highlight {
+    color: #365a31;
+    font-weight: bold;
+}

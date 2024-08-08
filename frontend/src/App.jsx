@@ -23,7 +23,11 @@ import { useKakaoLoader } from './hooks/useKakaoLoader.js';
 import Store from './pages/Store.jsx';
 import EventPage from './pages/EventPage.jsx';
 import EventOver from './pages/EventOver.jsx';
+
 import Footer from './components/Footer.jsx';
+import Terms from './components/Terms';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import OperatingPolicy from './components/OperatingPolicy';
 
 function App() {
   const navigate = useNavigate();
@@ -45,7 +49,6 @@ function App() {
     return (
       <Routes>
         <Route path="/" element={<Login />} />
-
         {/* 위에 없는 경로일 경우 올바르지 못한 접근 */}
         {/* <Route path="/*" element={<Unauthorized />} />  */}
       </Routes>
@@ -66,6 +69,9 @@ function App() {
           <Route path="/Store/event/*" element={<EventPage />} />
           <Route path="/Store/over" element={<EventOver />} />
           <Route path="/new-kakao" element={<NewKakao />} />
+          <Route path="/Terms" element={<Terms />} />
+          <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
+          <Route path="/OperatingPolicy" element={<OperatingPolicy />} />
           {/* 위에 없는 경로일 경우 찾을 수 없는 페이지 */}
           {/* <Route path="/*" element={<NotFound />} />  */}
         </Routes>
